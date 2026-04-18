@@ -36,9 +36,9 @@ To enable the VictoriaLogs web interface in Embedded Cluster deployments:
 
 Once enabled, access the logs interface at:
 
-<CodeBlock>
+```
 https://<your-domain>/logs/vmui/
-</CodeBlock>
+```
 
 <Warning title="Unauthenticated Access">
 The VMUI web interface endpoints are not authenticated. Only enable this option if your deployment is within a trusted network or you have implemented external authentication.
@@ -52,7 +52,7 @@ The VMUI web interface endpoints are not authenticated. Only enable this option 
 
 To enable the VictoriaLogs web interface in Helm Deployment, add the following to your `values.yaml`:
 
-<CodeBlock language="yaml">
+```yaml
 victoria-logs-single:
   server:
     ingress:
@@ -63,21 +63,21 @@ victoria-logs-single:
           path:
             - /logs
           port: http
-</CodeBlock>
+```
 
 Then upgrade your deployment:
 
-<CommandBlock>
+```shell
 helm upgrade pixee-enterprise-server ./charts/pixee-enterprise-server \
   -f values.yaml \
   -n pixee-enterprise-server
-</CommandBlock>
+```
 
 Once enabled, access the logs interface at:
 
-<CodeBlock>
+```
 https://your-domain.com/logs/vmui/
-</CodeBlock>
+```
 
 <Warning title="Unauthenticated Access">
 The VMUI web interface endpoints are not authenticated. Consider implementing external authentication or only enable this in trusted network environments.
@@ -95,25 +95,25 @@ If you prefer not to expose the VMUI via ingress, you can use port forwarding fo
 
 **Step 1: Create SSH tunnel from your local machine**
 
-<CommandBlock>
+```shell
 ssh -L 9428:localhost:9428 pixee@<your-hostname>
-</CommandBlock>
+```
 
 **Step 2: Set up port forwarding**
 
 In the SSH session, run:
 
-<CommandBlock>
+```shell
 sudo kubectl port-forward svc/pixee-enterprise-server-victoria-logs-single-server 9428:9428 -n kotsadm
-</CommandBlock>
+```
 
 **Step 3: Access the logs interface**
 
 Open your browser and navigate to:
 
-<CodeBlock>
+```
 http://localhost:9428/vmui/
-</CodeBlock>
+```
 
 {{/if}}
 
@@ -123,17 +123,17 @@ http://localhost:9428/vmui/
 
 **Step 1: Port forward to VictoriaLogs**
 
-<CommandBlock>
+```shell
 kubectl port-forward svc/pixee-enterprise-server-victoria-logs-single-server 9428:9428 -n pixee-enterprise-server
-</CommandBlock>
+```
 
 **Step 2: Access the logs interface**
 
 Open your browser and navigate to:
 
-<CodeBlock>
+```
 http://localhost:9428/vmui/
-</CodeBlock>
+```
 
 {{/if}}
 
@@ -141,8 +141,8 @@ http://localhost:9428/vmui/
 
 VictoriaLogs uses LogsQL, a powerful query language for searching and filtering logs. Here are some useful queries:
 
-<CodeBlock language="logsql">
-{`# Search for errors across all logs
+```logsql
+# Search for errors across all logs
 error OR ERROR
 
 # Filter logs by pod name
@@ -155,8 +155,8 @@ _stream:{pod=~"pixee-enterprise-server-platform.*"} AND "webhook"
 _stream:{pod=~"pixee-enterprise-server-.*"} AND level="ERROR"
 
 # Search within a time range (use the time picker in VMUI)
-_stream:{namespace="kotsadm"} AND "analysis"`}
-</CodeBlock>
+_stream:{namespace="kotsadm"} AND "analysis"
+```
 
 ### VictoriaLogs Resources
 
@@ -173,15 +173,15 @@ To view the pods in your deployment, use the namespace you installed Pixee into:
 
 ### List Running Pods
 
-<CommandBlock>
+```shell
 kubectl get pods -n <namespace> --field-selector status.phase=Running
-</CommandBlock>
+```
 
 ### View All Pods with Status
 
-<CommandBlock>
+```shell
 kubectl get pods -n <namespace>
-</CommandBlock>
+```
 
 ## Viewing Logs
 
@@ -193,9 +193,9 @@ To view logs for a specific service, use the `kubectl logs` command. For example
 
 **Embedded Cluster**
 
-<CommandBlock>
+```shell
 kubectl logs deployment.apps/pixee-enterprise-server-platform -n kotsadm
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -203,9 +203,9 @@ kubectl logs deployment.apps/pixee-enterprise-server-platform -n kotsadm
 
 **Helm Deployment**
 
-<CommandBlock>
+```shell
 kubectl logs deployment.apps/pixee-enterprise-server-platform -n pixee-enterprise-server
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -217,9 +217,9 @@ To narrow down to the last 25 lines with timestamps:
 
 **Embedded Cluster**
 
-<CommandBlock>
+```shell
 kubectl logs deployment.apps/pixee-enterprise-server-platform -n kotsadm --tail 25 --timestamps
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -227,9 +227,9 @@ kubectl logs deployment.apps/pixee-enterprise-server-platform -n kotsadm --tail 
 
 **Helm Deployment**
 
-<CommandBlock>
+```shell
 kubectl logs deployment.apps/pixee-enterprise-server-platform -n pixee-enterprise-server --tail 25 --timestamps
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -241,9 +241,9 @@ To continuously stream new logs as they are generated, use the `--follow` flag:
 
 **Embedded Cluster**
 
-<CommandBlock>
+```shell
 kubectl logs deployment.apps/pixee-enterprise-server-platform -n kotsadm --follow --tail 25 --timestamps
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -251,9 +251,9 @@ kubectl logs deployment.apps/pixee-enterprise-server-platform -n kotsadm --follo
 
 **Helm Deployment**
 
-<CommandBlock>
+```shell
 kubectl logs deployment.apps/pixee-enterprise-server-platform -n pixee-enterprise-server --follow --tail 25 --timestamps
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -272,9 +272,9 @@ Here are the main Pixee Enterprise Server deployments you may need to view logs 
 
 **Embedded Cluster**
 
-<CommandBlock>
+```shell
 kubectl logs deployment.apps/pixee-enterprise-server-analysis -n kotsadm --tail 50 --timestamps
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -282,9 +282,9 @@ kubectl logs deployment.apps/pixee-enterprise-server-analysis -n kotsadm --tail 
 
 **Helm Deployment**
 
-<CommandBlock>
+```shell
 kubectl logs deployment.apps/pixee-enterprise-server-analysis -n pixee-enterprise-server --tail 50 --timestamps
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -292,23 +292,23 @@ kubectl logs deployment.apps/pixee-enterprise-server-analysis -n pixee-enterpris
 
 If you need to view logs for a specific pod (rather than a service), first get the pod name:
 
-<CommandBlock>
+```shell
 kubectl get pods -n <namespace>
-</CommandBlock>
+```
 
 Then view the logs:
 
-<CommandBlock>
+```shell
 kubectl logs <pod-name> -n <namespace>
-</CommandBlock>
+```
 
 ### Multiple Containers in a Pod
 
 If a pod has multiple containers, specify the container name:
 
-<CommandBlock>
+```shell
 kubectl logs <pod-name> -c <container-name> -n <namespace>
-</CommandBlock>
+```
 
 ## Troubleshooting Common Issues
 
@@ -318,28 +318,28 @@ If no logs are appearing:
 
 1. Verify the pod is running:
 
-   <CommandBlock>
+   ```shell
    kubectl get pods -n <namespace>
-   </CommandBlock>
+   ```
 
 2. Check pod status and events:
 
-   <CommandBlock>
+   ```shell
    kubectl describe pod <pod-name> -n <namespace>
-   </CommandBlock>
+   ```
 
 3. Check if the service has active endpoints:
-   <CommandBlock>
+   ```shell
    kubectl get endpoints -n <namespace>
-   </CommandBlock>
+   ```
 
 ### Pod Keeps Restarting
 
 If a pod is repeatedly restarting, check the previous container's logs:
 
-<CommandBlock>
+```shell
 kubectl logs <pod-name> -n <namespace> --previous
-</CommandBlock>
+```
 
 ## Additional Resources
 

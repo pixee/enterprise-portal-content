@@ -49,8 +49,8 @@ curl -H "Authorization: Bearer <your-api-key>" \
 
 ### Example: Python Request
 
-<CodeBlock language="python">
-{`import requests
+```python
+import requests
 
 headers = {
     "Authorization": "Bearer <your-api-key>"
@@ -59,8 +59,8 @@ headers = {
 response = requests.get(
     "https://<your-pixee-server>/api/v1/openapi",
     headers=headers
-)`}
-</CodeBlock>
+)
+```
 
 ## API Resources
 

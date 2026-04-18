@@ -26,15 +26,15 @@ CodeTF files are an interchange format used by the Pixee platform. They represen
 
 SeaweedFS ports are not exposed by default. To access the SeaweedFS web UI, first create an SSH tunnel from your local machine:
 
-<CommandBlock>
+```shell
 ssh -L 8888:localhost:8888 pixee@<ip>
-</CommandBlock>
+```
 
 Then in the SSH session, use the `kubectl port-forward` command to forward the port:
 
-<CommandBlock>
+```shell
 kubectl port-forward -n kotsadm svc/pixee-enterprise-server-seaweedfs-filer 8888:8888
-</CommandBlock>
+```
 
 This will forward the SeaweedFS web UI to port 8888. Remember to kill these commands once you are done. You can then access the SeaweedFS web UI by visiting `http://localhost:8888` in your browser to browse and download files.
 
@@ -44,27 +44,27 @@ If you have registered a domain name for your Pixee Enterprise Server and have a
 replace the self-signed certificate used by the admin console during the initial installation, follow these steps:
 
 1. (optional) Retrieve the TLS certificate and private key from the cluster (skip this step if you already have the cert and key available)
-   <CommandBlock>
-   {`# From the Pixee Enterprise Server virtual machine
-sudo ./pixee shell
-kubectl get secret pixee-platform-tls-requested -o jsonpath='{.data.tls\\.crt}' -n kotsadm | base64 --decode > cert.pem
-kubectl get secret pixee-platform-tls-requested -o jsonpath='{.data.tls\\.key}' -n kotsadm | base64 --decode > key.pem`}
-   </CommandBlock>
+   ```bash
+   # From the Pixee Enterprise Server virtual machine
+   sudo ./pixee shell
+   kubectl get secret pixee-platform-tls-requested -o jsonpath='{.data.tls\.crt}' -n kotsadm | base64 --decode > cert.pem
+   kubectl get secret pixee-platform-tls-requested -o jsonpath='{.data.tls\.key}' -n kotsadm | base64 --decode > key.pem
+   ```
    Download the retrieved TLS certificate and private key locally
-   <CommandBlock>
+   ```bash
    # From your local machine
    scp pixee@<vm ip address>:/home/pixee/cert.pem ./
    scp pixee@<vm ip address>:/home/pixee/key.pem ./
-   </CommandBlock>
+   ```
 2. Prepare the existing admin console tls secret to be updated
 
-   <CommandBlock>
-   {`# From the Pixee Enterprise Server virtual machine
-sudo ./pixee shell
-kubectl -n default annotate secret kotsadm-tls acceptAnonymousUploads=1 --overwrite -n kotsadm
-PROXY_SERVER=$(kubectl get pods -A | grep kurl-proxy | awk '{print $2}')
-kubectl delete pods $PROXY_SERVER -n kotsadm`}
-   </CommandBlock>
+   ```bash
+   # From the Pixee Enterprise Server virtual machine
+   sudo ./pixee shell
+   kubectl -n default annotate secret kotsadm-tls acceptAnonymousUploads=1 --overwrite -n kotsadm
+   PROXY_SERVER=$(kubectl get pods -A | grep kurl-proxy | awk '{print $2}')
+   kubectl delete pods $PROXY_SERVER -n kotsadm
+   ```
 
    > ℹ️ The `acceptAnonymousUploads` annotation will be removed after completing the update in the next step
 
@@ -98,8 +98,8 @@ Pixee Enterprise Server uses [Authentik blueprints](https://docs.goauthentik.io/
 
 Find the Authentik worker pod and check blueprint status:
 
-<CommandBlock>
-{`# Find the worker pod
+```bash
+# Find the worker pod
 kubectl get pods -n <namespace> -l app.kubernetes.io/name=authentik,app.kubernetes.io/component=worker
 
 # Check all blueprint statuses
@@ -107,8 +107,8 @@ kubectl exec -n <namespace> <worker-pod> -- ak shell -c "
 from authentik.blueprints.models import BlueprintInstance
 for bp in BlueprintInstance.objects.all():
     print(f'{bp.name} | status={bp.status} | enabled={bp.enabled} | path={bp.path}')
-"`}
-</CommandBlock>
+"
+```
 
 Blueprint statuses:
 
@@ -120,9 +120,9 @@ Blueprint statuses:
 
 When a blueprint is in `error` state, the status alone does not show the error message. To see the actual error, manually trigger a blueprint apply from the worker pod:
 
-<CommandBlock>
+```bash
 kubectl exec -n <namespace> <worker-pod> -- ak apply_blueprint mounted/cm-pixee-authentik-blueprint/pixee-oidc.yaml
-</CommandBlock>
+```
 
 This will output the full error details, such as serializer validation errors or missing references.
 
@@ -132,20 +132,20 @@ This will output the full error details, such as serializer validation errors or
 2. **Deploy the fix** so the updated configmap is mounted in the worker pod
 3. **Reset the blueprint status** if it's stuck in `error`:
 
-   <CommandBlock>
+   ```bash
    kubectl exec -n <namespace> <worker-pod> -- ak shell -c "
    from authentik.blueprints.models import BlueprintInstance
    bp = BlueprintInstance.objects.get(name='Pixee OIDC Provider')
    bp.status = 'unknown'
    bp.save()
    "
-   </CommandBlock>
+   ```
 
 4. Wait for the next discovery cycle (~60 seconds), or manually trigger the apply:
 
-   <CommandBlock>
+   ```bash
    kubectl exec -n <namespace> <worker-pod> -- ak apply_blueprint mounted/cm-pixee-authentik-blueprint/pixee-oidc.yaml
-   </CommandBlock>
+   ```
 
 For more details on blueprint troubleshooting, see the [Authentik blueprint documentation](https://docs.goauthentik.io/developer-docs/blueprints/){:target="\_blank"}.
 

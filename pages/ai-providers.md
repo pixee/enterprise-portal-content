@@ -31,7 +31,7 @@ Navigate to the admin console, select the `Config` tab, then go to the `AI Setti
 
 To configure SCA models in Helm deployments:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     ai:
@@ -39,7 +39,7 @@ global:
       scaModelsEnabled: true
       # Optionally specify a custom model name (defaults to gpt-4.1)
       scaModelName: "gpt-4.1"
-</CodeBlock>
+```
 
 {{/if}}
 
@@ -65,7 +65,7 @@ Navigate to the admin console, select the `Config` tab, then go to the `AI Setti
 
 To configure Deep Research models in Helm deployments:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     ai:
@@ -73,7 +73,7 @@ global:
       scaModelsEnabled: true
       # Then specify a custom model for deep research (defaults to o4-mini-deep-research)
       deepResearchModelName: "o4-mini-deep-research"
-</CodeBlock>
+```
 
 {{/if}}
 
@@ -200,7 +200,7 @@ Select **Azure Anthropic** as the Default LLM Provider and configure:
 
 To configure Azure Anthropic in Helm deployments, add the following to your `values.yaml`:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     ai:
@@ -214,7 +214,7 @@ global:
         model: "claude-sonnet-4-20250514"
       fast:
         model: "claude-sonnet-4-20250514"
-</CodeBlock>
+```
 
 {{/if}}
 
@@ -238,13 +238,13 @@ When using OpenAI or Azure AI Foundry as your provider, a **Web Search Model Nam
 
 To configure a web search model in Helm deployments:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     ai:
       webSearch:
         model: "gpt-5.2"
-</CodeBlock>
+```
 
 <Note>
 Web search models are currently supported for OpenAI and Azure AI Foundry providers only.

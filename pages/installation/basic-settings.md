@@ -14,9 +14,9 @@ After installation, you'll need to configure the basic settings for Pixee Enterp
 
 Configuration is done through the admin console configuration page available after installation at:
 
-<CodeBlock>
+```
 https://<domain name or ip address>:30000
-</CodeBlock>
+```
 
 When you load the admin console page you will be prompted to enter your admin password. The first time configuring after installation you will be directed through a workflow that will step you through configuring Pixee Enterprise Server.
 
@@ -64,21 +64,21 @@ Create a `values.yaml` file and configure the following basic settings:
 
 Set the URL where your Pixee Enterprise Server will be accessible (if no domain name is available, use an external IP address):
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     domain: "<your pixee enterprise server domain name>"
-</CodeBlock>
+```
 
 ### Protocol
 
 Set the HTTP protocol (`http` or `https`) used to access your Pixee Enterprise Server:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     protocol: "https"
-</CodeBlock>
+```
 
 <Note>
 If you are using TLS to secure traffic to your Pixee Enterprise Server set this to `https`, even if you terminate TLS outside your cluster.
@@ -88,7 +88,7 @@ If you are using TLS to secure traffic to your Pixee Enterprise Server set this 
 
 If you are using an ingress controller, you can enable and configure the Pixee Enterprise Server ingress resource as follows:
 
-<CodeBlock language="yaml">
+```yaml
 platform:
   proxy:
     # enable proxy configuration with ingress to allow headers from the ingress controller
@@ -106,13 +106,13 @@ platform:
       - hosts:
           - "<your pixee enterprise server domain name>"
         secretName: "<your tls certificate secret name>"
-</CodeBlock>
+```
 
 ### AI Model Provider - OpenAI
 
 To configure access to the OpenAI API, set the following:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     ai:
@@ -125,13 +125,13 @@ global:
         secretKeys:
           # -- Secret key containing the api key
           apiKey: "key"
-</CodeBlock>
+```
 
 ### AI Model Provider - Azure OpenAI
 
 To configure access to Azure OpenAI, set the following:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     ai:
@@ -146,7 +146,7 @@ global:
         endpoint: "<your Azure OpenAI endpoint>"
         deployments:
           o3-mini: "<your model deployment name for o3-mini>"
-</CodeBlock>
+```
 
 ### Databricks AI Serving Endpoints
 
@@ -154,7 +154,7 @@ Pixee Enterprise Server can integrate with Databricks AI. See [Databricks AI](..
 
 To configure Databricks AI serving endpoints, set the following:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     ai:
@@ -167,7 +167,7 @@ global:
         secretKeys:
           # -- Secret key containing the api key
           apiKey: "key"
-</CodeBlock>
+```
 
 <Note>
 The baseUrl should point to your Databricks workspace serving endpoints. Ensure the required model endpoint (`o3-mini`) is deployed and accessible.

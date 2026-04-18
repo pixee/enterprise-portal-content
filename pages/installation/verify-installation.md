@@ -10,14 +10,14 @@ After installation is complete, you can verify your installation with the follow
 
 Both deployment methods provide the same health check endpoint to verify the Pixee Enterprise service status:
 
-<CommandBlock>
+```shell
 curl https://<domain or ip>/q/health
-</CommandBlock>
+```
 
 Expected response:
 
-<CodeBlock language="json">
-{`{
+```json
+{
   "status": "UP",
   "checks": [
     {
@@ -47,8 +47,8 @@ Expected response:
       "status": "UP"
     }
   ]
-}`}
-</CodeBlock>
+}
+```
 
 ## Kubernetes Resources
 
@@ -60,10 +60,10 @@ To verify Kubernetes resources in Embedded Cluster deployments follow:
 
 1. Open a terminal session on the VM and run the following commands:
 
-   <CommandBlock>
+   ```shell
    sudo ./pixee shell
    kubectl get all -n kotsadm
-   </CommandBlock>
+   ```
 
 2. Verify the Pixee Enterprise Server is ready by viewing pods and services, making sure all are in the `ready` state.
 
@@ -77,9 +77,9 @@ To verify Kubernetes resources in Helm Deployment follow:
 
 Verify the application is properly deployed by viewing pods and services, making sure all are in the `ready` state:
 
-<CommandBlock>
+```shell
 kubectl get all -n pixee-enterprise-server
-</CommandBlock>
+```
 
 {{/if}}
 

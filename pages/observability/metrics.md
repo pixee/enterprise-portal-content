@@ -30,20 +30,20 @@ To enable local metrics collection in Embedded Cluster deployments:
 
 To enable local metrics collection in Helm Deployment, add the following to your `values.yaml`:
 
-<CodeBlock language="yaml">
+```yaml
 global:
   pixee:
     localMetrics:
       enabled: true
-</CodeBlock>
+```
 
 Then upgrade your deployment:
 
-<CommandBlock>
+```shell
 helm upgrade pixee-enterprise-server ./charts/pixee-enterprise-server \
   -f values.yaml \
   -n pixee-enterprise-server
-</CommandBlock>
+```
 
 {{/if}}
 
@@ -69,9 +69,9 @@ To enable the VMUI web interface in Embedded Cluster deployments:
 
 Once enabled, access the dashboards at:
 
-<CodeBlock>
+```
 https://<your-domain>/metrics/vmui/#/dashboards
-</CodeBlock>
+```
 
 <Warning title="Unauthenticated Access">
 The VMUI web interface endpoints are not authenticated. Only enable this option if your deployment is within a trusted network or you have implemented external authentication.
@@ -85,7 +85,7 @@ The VMUI web interface endpoints are not authenticated. Only enable this option 
 
 To enable the VMUI web interface in Helm Deployment, add the following to your `values.yaml`:
 
-<CodeBlock language="yaml">
+```yaml
 victoria-metrics-single:
   server:
     ingress:
@@ -96,21 +96,21 @@ victoria-metrics-single:
           path:
             - /metrics
           port: http
-</CodeBlock>
+```
 
 Then upgrade your deployment:
 
-<CommandBlock>
+```shell
 helm upgrade pixee-enterprise-server ./charts/pixee-enterprise-server \
   -f values.yaml \
   -n pixee-enterprise-server
-</CommandBlock>
+```
 
 Once enabled, access the dashboards at:
 
-<CodeBlock>
+```
 https://your-domain.com/metrics/vmui/#/dashboards
-</CodeBlock>
+```
 
 <Warning title="Unauthenticated Access">
 The VMUI web interface endpoints are not authenticated. Consider implementing external authentication or only enable this in trusted network environments.
@@ -128,25 +128,25 @@ If you prefer not to expose the VMUI via ingress, you can use port forwarding fo
 
 **Step 1: Create SSH tunnel from your local machine**
 
-<CommandBlock>
+```shell
 ssh -L 8428:localhost:8428 pixee@<your-hostname>
-</CommandBlock>
+```
 
 **Step 2: Set up port forwarding**
 
 In the SSH session, run:
 
-<CommandBlock>
+```shell
 sudo kubectl port-forward pixee-enterprise-server-metrics-server-0 8428:8428 -n kotsadm
-</CommandBlock>
+```
 
 **Step 3: Access the dashboards**
 
 Open your browser and navigate to:
 
-<CodeBlock>
+```
 http://localhost:8428/vmui/#/dashboards
-</CodeBlock>
+```
 
 <Tip>
 Keep the SSH tunnel and port-forward running while viewing the dashboards.
@@ -160,17 +160,17 @@ Keep the SSH tunnel and port-forward running while viewing the dashboards.
 
 **Step 1: Port forward to Metrics**
 
-<CommandBlock>
+```shell
 kubectl port-forward pixee-enterprise-server-metrics-server-0 8428:8428 -n pixee-enterprise-server
-</CommandBlock>
+```
 
 **Step 2: Access the dashboards**
 
 Open your browser and navigate to:
 
-<CodeBlock>
+```
 http://localhost:8428/vmui/#/dashboards
-</CodeBlock>
+```
 
 {{/if}}
 
@@ -238,23 +238,23 @@ If users report that analysis is taking longer than expected:
 <Note title="Restarting Metrics After Updates">
 When new dashboards are added or existing dashboards are updated during an upgrade, the Metrics pod must be restarted to load the changes.
 
-<CommandBlock>
+```shell
 # For Embedded Cluster
 kubectl rollout restart statefulset pixee-enterprise-server-victoria-metrics-single-server -n kotsadm
 
 # For Helm Deployment
 kubectl rollout restart statefulset pixee-enterprise-server-victoria-metrics-single-server -n pixee-enterprise-server
-</CommandBlock>
+```
 
 The pod will perform a rolling restart, which may take a few minutes. You can monitor the restart progress:
 
-<CommandBlock>
+```shell
 # For Embedded Cluster
 kubectl rollout status statefulset pixee-enterprise-server-victoria-metrics-single-server -n kotsadm
 
 # For Helm Deployment
 kubectl rollout status statefulset pixee-enterprise-server-victoria-metrics-single-server -n pixee-enterprise-server
-</CommandBlock>
+```
 
 </Note>
 
@@ -280,9 +280,9 @@ Victoria Metrics provides a powerful UI (VMUI) for querying and visualizing metr
 
 Access the full VMUI interface at:
 
-<CodeBlock>
+```
 http://localhost:8428/vmui/
-</CodeBlock>
+```
 
 ### VMUI Features
 
@@ -298,8 +298,8 @@ From the VMUI, you can:
 
 Here are some example queries you can run in VMUI:
 
-<CodeBlock language="promql">
-{`# View all metric names
+```promql
+# View all metric names
 {__name__!=""}
 
 # AI service request rate (last 5 minutes)
@@ -309,8 +309,8 @@ rate(ai_service_requests[5m])
 histogram_quantile(0.95, sum(rate(ai_service_latency_ms_bucket[5m])) by (le, model))
 
 # Per-finding task counts by status
-sum by(status) (per_finding_tasks)`}
-</CodeBlock>
+sum by(status) (per_finding_tasks)
+```
 
 ## Metrics Retention
 
@@ -340,19 +340,19 @@ The new retention period will be applied automatically during the deployment.
 
 To adjust the retention period in Helm Deployment, add the following to your `values.yaml`:
 
-<CodeBlock language="yaml">
+```yaml
 victoria-metrics-single:
   server:
     retentionPeriod: "7d" # Options: 3d, 7d, 30d, 1y, etc.
-</CodeBlock>
+```
 
 Then upgrade your deployment:
 
-<CommandBlock>
+```shell
 helm upgrade pixee-enterprise-server ./charts/pixee-enterprise-server \
   -f values.yaml \
   -n pixee-enterprise-server
-</CommandBlock>
+```
 
 The new retention period will be applied automatically during the deployment.
 
@@ -364,23 +364,23 @@ The new retention period will be applied automatically during the deployment.
 
 If port forwarding fails, verify the pod is running:
 
-<CommandBlock>
+```shell
 # For Embedded Cluster
 kubectl get pod pixee-enterprise-server-metrics-server-0 -n kotsadm
 
 # For Helm Deployment
 kubectl get pod pixee-enterprise-server-metrics-server-0 -n pixee-enterprise-server
-</CommandBlock>
+```
 
 If the pod is not running, check the pod logs:
 
-<CommandBlock>
+```shell
 # For Embedded Cluster
 kubectl logs pixee-enterprise-server-metrics-server-0 -n kotsadm
 
 # For Helm Deployment
 kubectl logs pixee-enterprise-server-metrics-server-0 -n pixee-enterprise-server
-</CommandBlock>
+```
 
 ### Dashboards Not Appearing
 
