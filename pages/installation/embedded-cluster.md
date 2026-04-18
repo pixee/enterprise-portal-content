@@ -11,21 +11,21 @@ To install using Embedded Cluster follow:
 
 1. From your virtual machine, download the Pixee installer:
 
-   ```shell
+   <CommandBlock>
    curl -f "https://distribution.pixee.ai/embedded/pixee/<release channel>" -H "Authorization: <your license ID>" -o pixee.tgz
-   ```
+   </CommandBlock>
 
 2. Extract the Pixee installer:
 
-   ```shell
+   <CommandBlock>
    tar -xvzf pixee.tgz
-   ```
+   </CommandBlock>
 
 3. Run the Pixee installer:
 
-   ```shell
+   <CommandBlock>
    sudo ./pixee install --license license.yaml
-   ```
+   </CommandBlock>
 
     <Note>
     The directory used for data storage can be changed by passing the --data-dir

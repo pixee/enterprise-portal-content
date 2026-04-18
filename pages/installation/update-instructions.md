@@ -36,8 +36,8 @@ To update a Pixee Enterprise Server release, use the helm upgrade command. This 
 
 To change variable values in a release, use the `helm upgrade` command with the `-f` flag and provide your updated values.yaml file:
 
-```shell
+<CommandBlock>
 helm upgrade pixee-enterprise-server oci://registry.pixee.ai/pixee/stable/pixee-enterprise-server -f values.yaml -n pixee-enterprise-server
-```
+</CommandBlock>
 
 {{/if}}

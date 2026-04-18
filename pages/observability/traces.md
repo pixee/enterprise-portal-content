@@ -32,9 +32,9 @@ To enable the VictoriaTraces web interface in Embedded Cluster deployments:
 
 Once enabled, access the traces interface at:
 
-```
+<CodeBlock>
 https://<your-domain>/traces/select/vmui/
-```
+</CodeBlock>
 
 <Warning title="Unauthenticated Access">
 The VMUI web interface endpoints are not authenticated. Only enable this option if your deployment is within a trusted network or you have implemented external authentication.
@@ -48,7 +48,7 @@ The VMUI web interface endpoints are not authenticated. Only enable this option 
 
 To enable the VictoriaTraces web interface in Helm Deployment, add the following to your `values.yaml`:
 
-```yaml
+<CodeBlock language="yaml">
 victoriatraces:
   server:
     ingress:
@@ -59,21 +59,21 @@ victoriatraces:
           path:
             - /traces
           port: http
-```
+</CodeBlock>
 
 Then upgrade your deployment:
 
-```shell
+<CommandBlock>
 helm upgrade pixee-enterprise-server ./charts/pixee-enterprise-server \
   -f values.yaml \
   -n pixee-enterprise-server
-```
+</CommandBlock>
 
 Once enabled, access the traces interface at:
 
-```
+<CodeBlock>
 https://your-domain.com/traces/select/vmui/
-```
+</CodeBlock>
 
 <Warning title="Unauthenticated Access">
 The VMUI web interface endpoints are not authenticated. Consider implementing external authentication or only enable this in trusted network environments.
@@ -91,25 +91,25 @@ If you prefer not to expose the VMUI via ingress, you can use port forwarding fo
 
 **Step 1: Create SSH tunnel from your local machine**
 
-```shell
+<CommandBlock>
 ssh -L 10428:localhost:10428 pixee@<your-hostname>
-```
+</CommandBlock>
 
 **Step 2: Set up port forwarding**
 
 In the SSH session, run:
 
-```shell
+<CommandBlock>
 sudo kubectl port-forward svc/pixee-enterprise-server-traces-server 10428:10428 -n kotsadm
-```
+</CommandBlock>
 
 **Step 3: Access the traces interface**
 
 Open your browser and navigate to:
 
-```
+<CodeBlock>
 http://localhost:10428/traces/select/vmui/
-```
+</CodeBlock>
 
 {{/if}}
 
@@ -119,17 +119,17 @@ http://localhost:10428/traces/select/vmui/
 
 **Step 1: Port forward to VictoriaTraces**
 
-```shell
+<CommandBlock>
 kubectl port-forward svc/pixee-enterprise-server-traces-server 10428:10428 -n pixee-enterprise-server
-```
+</CommandBlock>
 
 **Step 2: Access the traces interface**
 
 Open your browser and navigate to:
 
-```
+<CodeBlock>
 http://localhost:10428/traces/select/vmui/
-```
+</CodeBlock>
 
 {{/if}}
 
