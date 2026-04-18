@@ -42,10 +42,10 @@ The Pixee API uses Bearer token authentication. Include your API key in the `Aut
 
 ### Example: cURL Request
 
-```bash
+<CommandBlock>
 curl -H "Authorization: Bearer <your-api-key>" \
   https://<your-pixee-server>/api/v1/openapi
-```
+</CommandBlock>
 
 ### Example: Python Request
 
@@ -88,7 +88,7 @@ The OpenAPI specification provides a machine-readable description of the API. Us
 
 To download the specification:
 
-```bash
+<CommandBlock>
 curl -H "Authorization: Bearer <your-api-key>" \
   https://<your-pixee-server>/api/v1/openapi > openapi.json
-```
+</CommandBlock>
