@@ -20,19 +20,19 @@ https://<domain name or ip address>:30000
 
 When you load the admin console page you will be prompted to enter your admin password. The first time configuring after installation you will be directed through a workflow that will step you through configuring Pixee Enterprise Server.
 
-### Basic Settings { data-toc-label="" }
+### Basic Settings
 
 The settings under the `Basic Settings` section all require your input. Here you will find the required settings for the Pixee Enterprise Server domain name, TLS options, and AI model provider settings. Make sure you review all of these settings for completeness and accuracy.
 
-#### Domain { data-toc-label="" }
+#### Domain
 
 Enter the domain name you have assigned to your Pixee Enterprise Server. If you have not assigned a domain name you can enter the public IP address of your Pixee Enterprise server instead but this will limit your TLS options.
 
-#### Protocol { data-toc-label="" }
+#### Protocol
 
 Select the protocol that will be used for your Pixee Enterprise Server. If you select `HTTP`, ingress traffic to your Pixee Enterprise Server will be un-encrypted. The `HTTP` option is for quick testing configurations or when you have an external system like an App Gateway or Load Balancer that is terminating TLS instead of Pixee Enterprise Server. If you have an external system (i.e. App Gateway, Load Balancer, etc.) acting as a reverse proxy to your Pixee Enterprise Server, make sure you provide reverse proxy settings in the Advanced Settings section. If you select `HTTPS`, ingress traffic to your Pixee Enterprise Server will be encrypted, and you will be prompted to configure TLS.
 
-#### Authentication { data-toc-label="" }
+#### Authentication
 
 Pixee Enterprise Server currently supports the following OIDC providers:
 
@@ -45,7 +45,7 @@ Select the OIDC provider you want to use for authentication. If you select `Embe
 
 See [Authentication](authentication.md) for more information on specific provider configuration.
 
-#### AI Providers { data-toc-label="" }
+#### AI Providers
 
 To use OpenAI directly, select OpenAI and enter your OpenAI API key.
 To use Azure OpenAI, select Azure OpenAI and enter your Azure OpenAI resource endpoint, key, and model deployment names for `o3-mini`.
@@ -60,7 +60,7 @@ For Databricks please see: [Databricks AI Serving Endpoints](../ai-providers.md#
 
 Create a `values.yaml` file and configure the following basic settings:
 
-### Domain { data-toc-label="" }
+### Domain
 
 Set the URL where your Pixee Enterprise Server will be accessible (if no domain name is available, use an external IP address):
 
@@ -70,7 +70,7 @@ global:
     domain: "<your pixee enterprise server domain name>"
 ```
 
-### Protocol { data-toc-label="" }
+### Protocol
 
 Set the HTTP protocol (`http` or `https`) used to access your Pixee Enterprise Server:
 
@@ -84,7 +84,7 @@ global:
 If you are using TLS to secure traffic to your Pixee Enterprise Server set this to `https`, even if you terminate TLS outside your cluster.
 </Note>
 
-### Ingress { data-toc-label="" }
+### Ingress
 
 If you are using an ingress controller, you can enable and configure the Pixee Enterprise Server ingress resource as follows:
 
@@ -108,7 +108,7 @@ platform:
         secretName: "<your tls certificate secret name>"
 ```
 
-### AI Model Provider - OpenAI { data-toc-label="" }
+### AI Model Provider - OpenAI
 
 To configure access to the OpenAI API, set the following:
 
@@ -127,7 +127,7 @@ global:
           apiKey: "key"
 ```
 
-### AI Model Provider - Azure OpenAI { data-toc-label="" }
+### AI Model Provider - Azure OpenAI
 
 To configure access to Azure OpenAI, set the following:
 
@@ -148,7 +148,7 @@ global:
           o3-mini: "<your model deployment name for o3-mini>"
 ```
 
-### Databricks AI Serving Endpoints { data-toc-label="" }
+### Databricks AI Serving Endpoints
 
 Pixee Enterprise Server can integrate with Databricks AI. See [Databricks AI](../ai-providers.md#databricks-ai) for more information.
 
