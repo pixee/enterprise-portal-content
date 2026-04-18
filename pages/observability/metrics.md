@@ -219,11 +219,13 @@ If users report that analysis is taking longer than expected:
 2. **Identify the time period** when the slowdown occurred using the time range selector in VMUI
 
 3. **Compare latency across models**:
+
    - Look for models with elevated p50 values - this indicates consistently slow performance
    - Check for spikes in p95 or p99 values - this indicates intermittent latency issues
    - Compare current latency values to historical baselines to confirm degradation
 
 4. **Correlate with other metrics**:
+
    - Check the **AI Service Requests Rate** dashboard to see if increased request volume is causing the latency
    - Review the **AI Service Rate Limit Events** dashboard to see if rate limiting is delaying requests
    - Examine the **AI Service Retry Rate** to identify if failed requests are causing delays
@@ -300,7 +302,7 @@ Here are some example queries you can run in VMUI:
 
 ```promql
 # View all metric names
-{__name__!=""}
+{__name__=~".+"}
 
 # AI service request rate (last 5 minutes)
 rate(ai_service_requests[5m])
