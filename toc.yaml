@@ -1,50 +1,79 @@
 navigation:
-  - title: Installation
+  - title: Getting Started
     icon: rocket
+    page: pages/home.md
+
+  - title: Installation
+    icon: download
     items:
-      - title: Requirements
-        page: pages/installation/requirements.md
+      - title: Overview
+        page: pages/installation/overview.md
+      - title: Prerequisites
+        page: pages/installation/prerequisites.md
+      - title: Embedded Cluster Installation
+        page: pages/installation/embedded-cluster.md
         visible_when:
           entitlements:
             - isEmbeddedClusterDownloadEnabled
-      - title: Release History
-        page: pages/installation/release-history.md
-      - title: Linux
-        page: pages/installation/linux.md
-        visible_when:
-          entitlements:
-            - isEmbeddedClusterDownloadEnabled
-      - title: Helm
+      - title: Helm Installation
         page: pages/installation/helm.md
         visible_when:
           entitlements:
             - isHelmInstallEnabled
-  - title: Operations
+      - title: Basic Settings
+        page: pages/installation/basic-settings.md
+      - title: Authentication
+        page: pages/installation/authentication.md
+      - title: Development Platform Integrations
+        page: pages/installation/development-platform-integrations.md
+      - title: Security Tool Integrations
+        page: pages/installation/security-tool-integrations.md
+      - title: Advanced Settings
+        page: pages/installation/advanced-settings.md
+      - title: Verify Installation
+        page: pages/installation/verify-installation.md
+      - title: Update Instructions
+        page: pages/installation/update-instructions.md
+
+  - title: AI Providers
+    icon: cloud
+    page: pages/ai-providers.md
+
+  - title: Cloud Providers
+    icon: cloud
+    page: pages/cloud-providers.md
+
+  - title: Organization Preferences
+    icon: settings
+    page: pages/organization-preferences.md
+
+  - title: Observability
+    icon: database
+    items:
+      - title: Overview
+        page: pages/observability/overview.md
+      - title: Logs
+        page: pages/observability/logs.md
+      - title: Metrics & Dashboards
+        page: pages/observability/metrics.md
+      - title: Traces
+        page: pages/observability/traces.md
+
+  - title: API Access
+    icon: key
+    page: pages/api-access.md
+
+  - title: Troubleshooting
     icon: wrench
-    items:
-      - title: Security
-        page: pages/operations/security.md
-        visible_when:
-          permissions:
-            - canViewSecurity
-      - title: Support Bundles
-        page: pages/operations/bundles/bundles.md
-      - title: Upload Bundles
-        page: pages/operations/bundles/uploaded.md
+    page: pages/troubleshooting.md
 
-  - title: Updates
-    icon: refresh-cw
-    items:
-      - title: Checking for Updates
-        page: pages/updates/checking.md
-
-  - title: Support
-    icon: life-buoy
-    items:
-      - title: FAQ
-        page: pages/support/faq.md
-      - title: Contact Support
-        page: pages/support/contact.md
+  - title: Helm Values Reference
+    icon: book
+    helm_chart:
+      name: pixee-enterprise-server
+    visible_when:
+      entitlements:
+        - isHelmInstallEnabled
 
 overrides:
   home: pages/home.md

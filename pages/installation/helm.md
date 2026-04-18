@@ -7,40 +7,27 @@ visible_when:
 
 # Helm Installation
 
-Install your application on a Kubernetes cluster using Helm charts. Read the docs or select your deployment preferences.
+To install using Helm Deployment follow:
 
-## Requirements
+1. Authenticate against the Pixee Helm Registry:
 
-Review the following prerequisites before installing.
+   ```shell
+   helm registry login registry.pixee.ai --username <your email address> --password <your license key>
+   ```
 
-- Kubernetes cluster v1.26 or later
-- Helm 3.x installed on your workstation
-- kubectl configured with cluster access
-- StorageClass available for persistent volumes
+2. **Preflight checks** - If there are any known issues that would prevent successful installation, the preflight checks will report them. To run the preflight checks:
 
-<Tip title="Before You Begin">
-Run `kubectl get sc` to confirm a default StorageClass is available. If no default is set, the installation will fail when creating persistent volume claims.
+   ```shell
+   helm template oci://registry.pixee.ai/pixee/<release channel>/pixee-enterprise-server --values values.yaml | kubectl preflight -
+   ```
+
+   If there are no issues, or you are able to address all reported issues, continue with the installation using helm.
+
+3. **Helm install** - Execute helm against the Kubernetes cluster to install, be sure to replace your release channel below (likely `stable` or `unstable`):
+   ```shell
+   helm upgrade --install pixee-enterprise-server oci://registry.pixee.ai/pixee/<release channel>/pixee-enterprise-server -f values.yaml -n pixee-enterprise-server --create-namespace
+   ```
+
+<Tip>
+Be sure to replace `<release channel>` with your actual assigned channel, this is likely `stable` or `unstable`
 </Tip>
-
-## Configuration
-
-Customize the options below. The install commands will update automatically based on your selections.
-
-<KubernetesDistribution />
-<NetworkAvailability installType="helm" />
-<RegistryAccess />
-<VersionSelector installType="helm" />
-
-## Install
-
-<HelmInstallAssets />
-
-<InstanceName />
-
-## Post-Install
-
-<Note>
-After installation, verify that all pods are running with `kubectl get pods -n <namespace>` before proceeding to post-installation configuration.
-</Note>
-
-See the post-installation documentation for next steps including configuring TLS, setting up backups, and connecting to your identity provider.
