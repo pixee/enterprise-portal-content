@@ -115,13 +115,13 @@ Copy the deployment's endpoint key from the Azure AI Foundry portal and paste it
 
 Find the `DeepSeek-R1` model name in the AI Foundry portal and paste it into the reasoning and fast model name fields. We want to use the same model for this example to keep things simple. But we could choose a different model if we wanted to, so long as it's available in our AI Foundry instance.
 
-[![dsr1-openai-model-names.png](./images/ai-providers/dsr1-openai-model-names.png)](./images/ai-providers/dsr1-openai-model-names.png)
+[![dsr1-openai-model-names.png]({{asset "assets/ai-providers/dsr1-openai-model-names.png"}})]({{asset "assets/ai-providers/dsr1-openai-model-names.png"}})
 
 #### Verify with preflight checks
 
 Preflight checks should run after the configuration is saved and should successfully connect to the model.
 
-[![dsr1-openai-preflight.png](./images/ai-providers/dsr1-openai-preflight.png)](./images/ai-providers/dsr1-openai-preflight.png)
+[![dsr1-openai-preflight.png]({{asset "assets/ai-providers/dsr1-openai-preflight.png"}})]({{asset "assets/ai-providers/dsr1-openai-preflight.png"}})
 
 ## Azure OpenAI
 

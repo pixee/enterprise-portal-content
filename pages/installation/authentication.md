@@ -541,14 +541,14 @@ Pixee Enterprise Server supports Microsoft Entra authentication with single tena
 In order to set up OIDC for Microsoft you need to go to your [Microsoft Azure Portal](https://portal.azure.com/){:target="\_blank"},
 and search for `Microsoft Entra ID`. Select `Microsoft Entra ID` under Services.
 
-[![microsoft_entra.png](../images/authentication/microsoft_entra-search-for-entra.png)](../images/authentication/microsoft_entra-search-for-entra.png)
+[![microsoft_entra.png]({{asset "assets/authentication/microsoft_entra-search-for-entra.png"}})]({{asset "assets/authentication/microsoft_entra-search-for-entra.png"}})
 
 Look for `Manage` on the left navigation bar, click on `App registrations` then click on `New registration`:
-[![microsoft_entra_2.png](../images/authentication/microsoft_entra-steps-to-registration.png)](../images/authentication/microsoft_entra-steps-to-registration.png)
+[![microsoft_entra_2.png]({{asset "assets/authentication/microsoft_entra-steps-to-registration.png"}})]({{asset "assets/authentication/microsoft_entra-steps-to-registration.png"}})
 
 Fill in your application name, select the Single tenant option and add a `Web` Redirect URI as `https://<domain>/api/auth/login`, then click on Register:
 
-[![microsoft_entra_3.png](../images/authentication/microsoft_entra-register-app.png)](../images/authentication/microsoft_entra-register-app.png)
+[![microsoft_entra_3.png]({{asset "assets/authentication/microsoft_entra-register-app.png"}})]({{asset "assets/authentication/microsoft_entra-register-app.png"}})
 
 ### Retrieve App Registration Details
 
@@ -556,16 +556,16 @@ After creating the app registration, you will be redirected to the app's overvie
 
 - **Application (client) ID**: Save this ID, which you will use as the `ClientID` in your Pixee configuration.
 
-[![microsoft_entra_4.png](../images/authentication/microsoft_entra-client-id.png)](../images/authentication/microsoft_entra-client-id.png)
+[![microsoft_entra_4.png]({{asset "assets/authentication/microsoft_entra-client-id.png"}})]({{asset "assets/authentication/microsoft_entra-client-id.png"}})
 
 Then navigate to `Certificates & secrets` in the left navigation bar, and click on `New client secret` to create a new secret:
-[![microsoft_entra_6.png](../images/authentication/microsoft_entra-create-client-secret.png)](../images/authentication/microsoft_entra-create-client-secret.png)
+[![microsoft_entra_6.png]({{asset "assets/authentication/microsoft_entra-create-client-secret.png"}})]({{asset "assets/authentication/microsoft_entra-create-client-secret.png"}})
 
 **Client Secret**: After creating the client secret, copy the value immediately as it will not be shown again. This value will be used as the `ClientSecret` in your Pixee configuration:
-[![microsoft_entra_5.png](../images/authentication/microsoft_entra-client-secret.png)](../images/authentication/microsoft_entra-client-secret.png)
+[![microsoft_entra_5.png]({{asset "assets/authentication/microsoft_entra-client-secret.png"}})]({{asset "assets/authentication/microsoft_entra-client-secret.png"}})
 
 **Authority URL**: can be obtained from the "Endpoints" section of the App Registration:
-[![microsoft_entra_7.png](../images/authentication/microsoft_entra-authority-url.png)](../images/authentication/microsoft_entra-authority-url.png)
+[![microsoft_entra_7.png]({{asset "assets/authentication/microsoft_entra-authority-url.png"}})]({{asset "assets/authentication/microsoft_entra-authority-url.png"}})
 
 {{#if entitlements.isEmbeddedClusterDownloadEnabled}}
 
@@ -576,7 +576,7 @@ To configure Microsoft Entra authentication in Embedded Cluster deployments foll
 Navigate to the admin console, select the `Config` tab, then go to the `Basic Settings` section.
 
 Under `Authentication mode`, select Microsoft Entra as the provider and provide a client ID, client secret, and authority URL.
-[![microsoft_entra_embedded.png](../images/authentication/microsoft_entra-embedded-cluster.png)](../images/authentication/microsoft_entra-embedded-cluster.png)
+[![microsoft_entra_embedded.png]({{asset "assets/authentication/microsoft_entra-embedded-cluster.png"}})]({{asset "assets/authentication/microsoft_entra-embedded-cluster.png"}})
 
 {{/if}}
 

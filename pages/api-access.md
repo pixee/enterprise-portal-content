@@ -30,7 +30,7 @@ Log in with your admin credentials.
 3. Check the **Enable Pixee API key** checkbox to enable API authentication
 4. Copy the value from the **Pixee API Key** field
 
-[![Pixee API Key configuration in admin console](./images/api/pixee-api-key-config.png)](./images/api/pixee-api-key-config.png)
+[![Pixee API Key configuration in admin console]({{asset "assets/api/pixee-api-key-config.png"}})]({{asset "assets/api/pixee-api-key-config.png"}})
 
 <Tip>
 Store your API key securely. Treat it like a password and avoid committing it to version control or sharing it in insecure channels.

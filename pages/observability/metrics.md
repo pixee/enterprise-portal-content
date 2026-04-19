@@ -198,7 +198,7 @@ Track per-finding task execution with:
 
 One of the most common use cases for the metrics dashboards is troubleshooting slow analysis performance. The **AI Service Latency Percentiles** dashboard is particularly useful for identifying which AI models are contributing to latency issues.
 
-[![ai-latency-graph.png](../images/metrics/ai-latency-graph.png)](../images/metrics/ai-latency-graph.png)
+[![ai-latency-graph.png]({{asset "assets/metrics/ai-latency-graph.png"}})]({{asset "assets/metrics/ai-latency-graph.png"}})
 
 **Understanding the Latency Percentiles Graph**
 
