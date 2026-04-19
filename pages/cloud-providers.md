@@ -14,10 +14,10 @@ Configuration and setup information for deploying Pixee Enterprise Server on Ama
 
 When installing in EKS v1.30+, persistent volumes need to have the defaultStorageClass set. This is especially important if using the embedded database or embedded object store. Set the following in your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   defaultStorageClass: "gp2"
-```
+</CommandBlock>
 
 ### Resources
 
@@ -53,7 +53,7 @@ This section covers AWS S3 access from EKS clusters. For other cloud providers a
 
    Create an IAM policy with the required S3 permissions:
 
-   ```json
+   <CommandBlock>
    {
      "Version": "2012-10-17",
      "Statement": [
@@ -74,13 +74,13 @@ This section covers AWS S3 access from EKS clusters. For other cloud providers a
        }
      ]
    }
-   ```
+   </CommandBlock>
 
 2. Create Kubernetes Service Account
 
    Create a service account with the IAM role annotation:
 
-   ```yaml
+   <CommandBlock>
    apiVersion: v1
    kind: ServiceAccount
    metadata:
@@ -88,13 +88,13 @@ This section covers AWS S3 access from EKS clusters. For other cloud providers a
      namespace: pixee-enterprise-server
      annotations:
        eks.amazonaws.com/role-arn: "arn:aws:iam::123456789012:role/pixee-s3-role"
-   ```
+   </CommandBlock>
 
 3. Configure Helm Values
 
    Set the following in your `values.yaml`:
 
-   ```yaml
+   <CommandBlock>
    global:
      pixee:
        serviceAccount:
@@ -106,7 +106,7 @@ This section covers AWS S3 access from EKS clusters. For other cloud providers a
          region: "us-east-1"
          credentialType: "default" # Use IRSA
          # username and password are not required with IRSA
-   ```
+   </CommandBlock>
 
 ### External RDS Database Configuration
 
@@ -118,7 +118,7 @@ If using an external database such as Amazon RDS for PostgreSQL you can referenc
 
 3. Configure Helm Values
 
-   ```yaml
+   <CommandBlock>
    database:
      embedded: false
      host: <RDS ENDPOINT>
@@ -126,7 +126,7 @@ If using an external database such as Amazon RDS for PostgreSQL you can referenc
      name: "pixee_platform"
      username: "pixee"
      existingSecret: <EXISTING SECRET NAME>
-   ```
+   </CommandBlock>
 
 ## Azure
 
@@ -186,7 +186,7 @@ Configuration and setup information for deploying Pixee Enterprise Server on Goo
 
 You can utilize the built-in ingress controller for Google Kubernetes Engine by setting the following in `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
 platform:
   service:
@@ -201,7 +201,7 @@ platform:
         paths:
           - path: "/"
             pathType: "Prefix"
-```
+</CommandBlock>
 
 ### Resources
 

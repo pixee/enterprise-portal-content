@@ -49,7 +49,7 @@ After deployment, Authentik will automatically initialize with the Pixee OIDC ap
 
 To enable Authentik in Helm deployments, set the following in your `values.yaml`:
 
-```yaml
+<CommandBlock>
 authentik:
   enabled: true
   authentik:
@@ -83,7 +83,7 @@ global:
           id: "pixee"
           secret: "<generate a secure random string>"
         redirectUri: "https://<your-domain>/api/auth/callback"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -97,9 +97,9 @@ After deploying with Authentik enabled:
 
 1. **Access the admin interface** by navigating to:
 
-   ```
+   <CommandBlock>
    https://<your-domain>/authentik/
-   ```
+   </CommandBlock>
 
    Log in with username `akadmin` and the password shown in the admin console config page (your license ID). After logging in, click the **Admin interface** button to access user management.
 
@@ -117,9 +117,9 @@ After deploying with Authentik enabled:
 
 2. **Access the admin interface** by navigating to:
 
-   ```
+   <CommandBlock>
    https://<your-domain>/authentik/
-   ```
+   </CommandBlock>
 
    Log in with username `akadmin` and the configured password, then click the **Admin interface** button.
 
@@ -136,9 +136,9 @@ If you need to reset a user's password, the easiest way is to create a recovery 
 
 As a CLI fallback, you can generate a recovery link via kubectl:
 
-```bash
+<CommandBlock>
 kubectl exec -n <namespace> deploy/<release-name>-authentik-server -- ak create_recovery_key 30 akadmin
-```
+</CommandBlock>
 
 This generates a recovery URL valid for 30 minutes.
 </Tip>
@@ -227,9 +227,9 @@ By default, users logging in with Google for the first time are prompted to choo
    - **Name**: `Google Email to Username`
    - **Expression**:
 
-     ```python
+     <CommandBlock>
      return {"username": info.get("email", "").split("@")[0]}
-     ```
+     </CommandBlock>
 
 3. Go to **Directory** → **Federation and Social login** → edit the Google OAuth source
 4. Under **User Property Mappings**, add **Google Email to Username** to the selected mappings
@@ -296,9 +296,9 @@ Pixee Enterprise Server supports Oracle Identity Domains as an external identity
 5. Set **Allowed Grant Types** to **Authorization Code**
 6. Set **Redirect URL** to:
 
-   ```
+   <CommandBlock>
    https://<your-domain>/authentik/source/oauth/callback/oracle/
-   ```
+   </CommandBlock>
 
 7. Leave **Token issuance policy** set to **All**
 8. Click **Finish**, then **Activate** the application
@@ -390,9 +390,9 @@ If users are not appearing after sync, check the sync logs:
 2. Look for entries with action `configuration_error` — these indicate sync failures with details about what went wrong
 3. Alternatively, check the Authentik worker pod logs directly:
 
-   ```bash
+   <CommandBlock>
    kubectl logs -n <namespace> deploy/<release-name>-authentik-worker --tail=200 | grep -i "ldap\|configuration_error\|username"
-   ```
+   </CommandBlock>
 
    Common errors in the logs include:
    - **"Username was not set by propertymappings"**: Ensure a property mapping that sets the `username` field is selected on the LDAP source under **User Property Mappings**
@@ -487,9 +487,9 @@ When auto-redirect is enabled, administrators who need to log in with username/p
 
 4. Administrators can now log in directly at:
 
-   ```
+   <CommandBlock>
    https://<your-domain>/authentik/if/flow/direct-authentication-flow/
-   ```
+   </CommandBlock>
 
 ## Google Authentication
 
@@ -519,7 +519,7 @@ To configure Google authentication in Helm Deployment follow:
 
 To enable Google authentication, set the following in your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     access:
@@ -528,7 +528,7 @@ global:
           provider: google
           id: "<your Google oidc client id>"
           secret: "<your Google oidc client secret>"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -588,7 +588,7 @@ To configure Microsoft Entra authentication in Helm Deployment follow:
 
 To enable Microsoft authentication, set the following in your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     access:
@@ -598,7 +598,7 @@ global:
           id: "<your Microsoft oidc client id>"
           secret: "<your Microsoft oidc client secret>"
           authServerUrl: "<your Microsoft oidc auth server url, such as https://login.microsoftonline.com/{tenant_id}>"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -643,7 +643,7 @@ To configure Okta authentication in Helm Deployment follow:
 
 To enable Okta authentication, set the following in your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     access:
@@ -653,6 +653,6 @@ global:
           id: "<your Okta oidc client id>"
           secret: "<your Okta oidc client secret>"
           authServerUrl: "<your Okta oidc auth server url, such as https://{tenant-name}.okta.com>"
-```
+</CommandBlock>
 
 {{/if}}

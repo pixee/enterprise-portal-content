@@ -45,7 +45,7 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   scm:
     azure:
@@ -62,7 +62,7 @@ platform:
         tokenKey: "token"
         # -- The secret key containing the webhook password
         webhookPasswordKey: "webhookPassword"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -114,7 +114,7 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   scm:
     bitbucket:
@@ -126,7 +126,7 @@ platform:
       secretKeys:
         # -- The secret key containing the API token
         apiTokenKey: "apiToken"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -229,7 +229,7 @@ After creating up your GitHub App, insert the following data into the appropriat
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   github:
     appName: "<your custom GitHub app name>"
@@ -248,7 +248,7 @@ platform:
       appPrivateKeySecretKey: appPrivateKey
     # For GitHub Enterprise hosted at domains other than github.com, uncomment set your GitHub Enterprise url:
     # url: "https://github.your-company.com"
-```
+</CommandBlock>
 
 <Tip>
 Be sure to check the indentation is correct for each line of the GitHub app private key
@@ -309,7 +309,7 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   scm:
     gitlab:
@@ -325,7 +325,7 @@ platform:
         tokenKey: "token"
         # -- The secret key containing the webhookSecret
         webhookSecretKey: "webhookSecret"
-```
+</CommandBlock>
 
 {{/if}}
 

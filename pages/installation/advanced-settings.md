@@ -38,7 +38,7 @@ You can configure Pixee Enterprise Server to use an external database server. If
 
 To configure an external database, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   database:
     embedded: false
@@ -49,7 +49,7 @@ platform:
     password: "<your database user password>"
     # -- Use an existing secret for the password instead of passing directly in Values.  Secret must contain a `password` key.
     existingSecret: "<your postgres secret name>"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -73,7 +73,7 @@ To use existing secrets for Superset and/or Authentik database credentials, firs
 
 **Superset database credentials:**
 
-```yaml
+<CommandBlock>
 apiVersion: v1
 kind: Secret
 metadata:
@@ -82,11 +82,11 @@ type: kubernetes.io/basic-auth
 stringData:
   username: "superset"
   password: "<your-password>"
-```
+</CommandBlock>
 
 **Authentik database credentials:**
 
-```yaml
+<CommandBlock>
 apiVersion: v1
 kind: Secret
 metadata:
@@ -95,11 +95,11 @@ type: kubernetes.io/basic-auth
 stringData:
   username: "authentik"
   password: "<your-password>"
-```
+</CommandBlock>
 
 Then reference them in your `values.yaml`:
 
-```yaml
+<CommandBlock>
 superset:
   database:
     existingSecret: "my-superset-postgresql-credentials"
@@ -107,7 +107,7 @@ superset:
 authentik:
   database:
     existingSecret: "my-authentik-postgresql-credentials"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -159,7 +159,7 @@ To configure external object store with static credentials in Helm Deployment fo
 
 To configure an external object store, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     objectStore:
@@ -173,7 +173,7 @@ platform:
 analysis:
   objectStore:
     bucket: "<your provisioned bucket name for the pixee analysis service>"
-```
+</CommandBlock>
 
 #### Service Account Authentication
 
@@ -181,7 +181,7 @@ For enhanced security, you can use Kubernetes service account authentication ins
 
 To configure service account authentication, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     serviceAccount:
@@ -198,7 +198,7 @@ platform:
 analysis:
   objectStore:
     bucket: "<your provisioned bucket name for the pixee analysis service>"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -228,10 +228,10 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 To configure the Git clone strategy in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   gitCloneStrategy: "partial" # or "full" for maximum compatibility
-```
+</CommandBlock>
 
 The default value is `partial` for optimal performance. Change to `full` if you encounter issues with Git servers that don't support partial clones.
 
@@ -241,13 +241,13 @@ The default value is `partial` for optimal performance. Change to `full` if you 
 
 When using a service account for Git operations (e.g., a GitLab service account), you may need to configure the author email and username that Pixee uses when creating commits. You can retrieve these values from your VCS provider's API:
 
-```bash
+<CommandBlock>
 # GitLab example — username
 curl -s -H "Authorization: Bearer $GITLAB_TOKEN" "https://gitlab.com/api/v4/user" | jq '.username'
 
 # GitLab example — email (separate endpoint)
 curl -s -H "Authorization: Bearer $GITLAB_TOKEN" "https://gitlab.com/api/v4/user/emails" | jq '.[0].email'
-```
+</CommandBlock>
 
 {{#if entitlements.isEmbeddedClusterDownloadEnabled}}
 
@@ -263,11 +263,11 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 Add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   gitAuthorEmail: "service-account@example.com"
   gitAuthorUsername: "pixee-bot"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -295,12 +295,12 @@ To configure error reporting in Helm Deployment follow:
 
 To disable automatic error and crash reporting, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     sentry:
       enabled: false
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -315,16 +315,16 @@ The `NO_PROXY` environment variable in Pixee Enterprise Server does not support 
 
 **Not Supported:**
 
-```
+<CommandBlock>
 NO_PROXY=*.internal.company.com
 NO_PROXY=10.0.*.*
-```
+</CommandBlock>
 
 **Supported (Required Format):**
 
-```
+<CommandBlock>
 NO_PROXY=service1.internal.company.com,service2.internal.company.com,10.0.1.5,10.0.2.10
-```
+</CommandBlock>
 
 This limitation means that if you have multiple internal services that should bypass the proxy, each hostname must be explicitly listed in the `NO_PROXY` configuration.
 </Warning>
@@ -351,23 +351,23 @@ To configure HTTP(S) proxy in Helm Deployment follow:
 
 Add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     httpProxy: "<address>:<port>" # HTTP proxy server host/address and port
     httpsProxy: "<address>:<port>" # HTTPS proxy server host/address and port
     noProxy: "<comma,separated,hosts>" # Comma separated list of exact hostnames/IPs to exclude from proxy (wildcards not supported)
-```
+</CommandBlock>
 
 **Example configuration:**
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     httpProxy: "proxy.company.com:8080"
     httpsProxy: "proxy.company.com:8080"
     noProxy: "kubernetes.default,kubernetes.default.svc,10.0.0.1,database.internal.company.com,api.internal.company.com"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -388,15 +388,15 @@ If you need to add new CA certificates after the initial installation:
 1. Update the host's CA trust store (e.g. add the certificate and run `update-ca-trust`)
 2. Wait up to one hour for the `kotsadm-private-cas` ConfigMap to refresh automatically, or force an immediate refresh:
 
-   ```bash
+   <CommandBlock>
    kubectl rollout restart deployment/embedded-cluster-operator -n embedded-cluster
-   ```
+   </CommandBlock>
 
 3. Restart the Pixee platform deployment to pick up the new certificates:
 
-   ```bash
+   <CommandBlock>
    kubectl rollout restart deployment/pixee-platform -n <namespace>
-   ```
+   </CommandBlock>
 
 {{/if}}
 
@@ -406,19 +406,19 @@ If you need to add new CA certificates after the initial installation:
 
 Create a ConfigMap containing your PEM-encoded CA certificate(s):
 
-```bash
+<CommandBlock>
 kubectl create configmap my-ca-certs \
   --from-file=ca.pem=/path/to/your/ca-certificate.pem \
   -n <namespace>
-```
+</CommandBlock>
 
 Then reference it in your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     privateCACert: "my-ca-certs"
-```
+</CommandBlock>
 
 The ConfigMap may contain one or more PEM files, each with one or more certificates. All certificates will be imported into the trust stores used by the platform, analysis, and forge services.
 
@@ -426,9 +426,9 @@ The ConfigMap may contain one or more PEM files, each with one or more certifica
 
 To add or replace certificates, update the ConfigMap and restart the platform deployment:
 
-```bash
+<CommandBlock>
 kubectl rollout restart deployment/pixee-platform -n <namespace>
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -452,10 +452,10 @@ Once enabled, enter host aliases in `/etc/hosts` format in the text area — one
 
 **Example:**
 
-```
+<CommandBlock>
 10.0.0.1 service.internal api.internal
 192.168.1.100 db.internal
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -465,14 +465,14 @@ Once enabled, enter host aliases in `/etc/hosts` format in the text area — one
 
 To configure host aliases in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   hostAliases:
     - ip: "10.0.0.1"
       hostnames:
         - "service.internal"
         - "api.internal"
-```
+</CommandBlock>
 
 Each entry maps an IP address to one or more hostnames, which are added to the pod's `/etc/hosts` file.
 
@@ -502,12 +502,12 @@ To configure metrics reporting in Helm Deployment follow:
 
 To disable metrics reporting, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     metrics:
       enabled: false
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -535,10 +535,10 @@ To configure signature duration in Helm Deployment follow:
 
 To configure a custom signature duration for pre-signed URLs, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   inputSignatureDuration: "<duration>"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -574,7 +574,7 @@ To configure reverse proxy settings in Helm Deployment follow:
 
 Add the following applicable settings to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     # Set externalProtocol when the reverse proxy terminates TLS and the cluster serves HTTP
@@ -586,7 +586,7 @@ platform:
     headers:
       forwarded: true|false # set to true to allow `Forwarded` header, defaults to false
       xForwarded: true|false # set to true to allow X-Forwarded-* headers, defaults to false
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -621,7 +621,7 @@ The non-standard port setting ensures that browser-facing OIDC redirect URLs (au
 
 Add the port to your `values.yaml` and enable proxy headers:
 
-```yaml
+<CommandBlock>
 global:
   pixee:
     port: "5443" # your non-standard port
@@ -630,7 +630,7 @@ platform:
     enabled: true
     headers:
       xForwarded: true
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -679,12 +679,12 @@ The duration should be specified as a string with time units. Common examples: "
 
 To configure analysis timeouts in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   analysisTimeout: "15m" # General analysis progress timeout
   sastAnalysisTimeout: "20m" # SAST-specific timeout (optional)
   scaAnalysisTimeout: "45m" # SCA-specific timeout (optional)
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -714,10 +714,10 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 To configure the agentic triage analyzer strategy in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 analysis:
   agenticTriageAnalyzerStrategy: decision-tree
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -741,10 +741,10 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 To enable project context in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 analysis:
   enableProjectContext: true
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -768,10 +768,10 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 To configure the SCA max requests to analyze in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 analysis:
   scaMaxRequestsToAnalyze: 5
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -795,10 +795,10 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 To enable this optimization in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 analysis:
   useScaExploitabilityToShortcircuitFix: true
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -822,10 +822,10 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 This is enabled by default. To disable it in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 analysis:
   enableVendoredFileTriage: false
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -852,14 +852,14 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 To configure analysis input caching in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 analysis:
   cache:
     enabled: true
     defaultTtlSeconds: 86400 # 24 hours
     maxSizeBytes: 10737418240 # 10GB
     honorCacheControl: true
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -888,10 +888,10 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 To configure analysis backpressure in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 analysis:
   backpressureEnabled: true # or false to disable
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -920,9 +920,9 @@ Navigate to the admin console, select the `Config` tab, then go to the `Advanced
 
 To configure transitive dependency analysis in Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 analysis:
   enableTransitiveDependencyAnalysis: true # or false to disable (default)
-```
+</CommandBlock>
 
 {{/if}}

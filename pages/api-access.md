@@ -49,7 +49,7 @@ curl -H "Authorization: Bearer <your-api-key>" \
 
 ### Example: Python Request
 
-```python
+<CommandBlock>
 import requests
 
 headers = {
@@ -60,7 +60,7 @@ response = requests.get(
     "https://<your-pixee-server>/api/v1/openapi",
     headers=headers
 )
-```
+</CommandBlock>
 
 ## API Resources
 

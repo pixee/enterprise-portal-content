@@ -48,7 +48,7 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   pixeebot:
     appscan:
@@ -63,7 +63,7 @@ platform:
         apiKeySecretKey: "apiKeySecret"
         webhookUserKey: "webhookUser"
         webhookPasswordKey: "webhookPassword"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -75,9 +75,9 @@ To receive notifications from AppScan, you'll need to configure two webhooks in 
 
 First, generate the Base64-encoded authorization header using the webhook username and password you configured in Pixee Enterprise Server:
 
-```bash
+<CommandBlock>
 echo -n "username:password" | base64
-```
+</CommandBlock>
 
 This will output a Base64 string like `dXNlcm5hbWU6cGFzc3dvcmQ=`. Prepend `Basic ` to create the full authorization header value.
 
@@ -85,7 +85,7 @@ This will output a Base64 string like `dXNlcm5hbWU6cGFzc3dvcmQ=`. Prepend `Basic
 
 This webhook notifies Pixee Enterprise Server when an AppScan scan completes. Use the AppScan Webhook API to create it with the following request body:
 
-```json
+<CommandBlock>
 {
   "AuthorizationHeader": "Basic <your-base64-encoded-credentials>",
   "PresenceId": "<your-presence-id>",
@@ -94,13 +94,13 @@ This webhook notifies Pixee Enterprise Server when an AppScan scan completes. Us
   "AssetGroupId": "<your-asset-group-id>",
   "Event": "ScanExecutionCompleted"
 }
-```
+</CommandBlock>
 
 #### Webhook 2: New Patch Request
 
 This webhook notifies Pixee Enterprise Server when a new patch is requested in AppScan. Use the AppScan Webhook API to create it with the following request body:
 
-```json
+<CommandBlock>
 {
   "AuthorizationHeader": "Basic <your-base64-encoded-credentials>",
   "PresenceId": "<your-presence-id>",
@@ -112,7 +112,7 @@ This webhook notifies Pixee Enterprise Server when a new patch is requested in A
   "RequestBody": "{\"patch_id\": \"{SubjectId}\"}",
   "ContentType": "application/json"
 }
-```
+</CommandBlock>
 
 #### Placeholder Reference
 
@@ -157,7 +157,7 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   arnica:
     apiKey: "your-arnica-api-key"
@@ -166,7 +166,7 @@ platform:
     secretKeys:
       # -- The secret key containing the apiKey
       apiKeyKey: "apiKey"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -202,7 +202,7 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   blackduck:
     accessToken: "your-blackduck-access-token"
@@ -211,7 +211,7 @@ platform:
     secretKeys:
       # -- The secret key containing the accessToken
       accessTokenKey: "accessToken"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -251,7 +251,7 @@ For all SonarQube integration types (Server or Cloud) enter the following inform
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   sonar:
     # For SonarQube Server integration, provide your SonarQube server baseUri:
@@ -267,7 +267,7 @@ platform:
       tokenKey: "token"
       # -- The secret key containing the webhookSecret
       webhookSecretKey: "webhookSecret"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -294,14 +294,14 @@ In the admin console `Security Tool` section, use the following checkboxes:
 
 **Helm Deployment**
 
-```yaml
+<CommandBlock>
 platform:
   sonar:
     # Exclude maintainability findings (code smells)
     excludeMaintainabilityFindings: true
     # Exclude reliability findings (bugs)
     excludeReliabilityFindings: true
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -325,7 +325,7 @@ In the admin console `Security Tool` section:
 
 **Helm Deployment**
 
-```yaml
+<CommandBlock>
 platform:
   sonar:
     # Explicit CWE ID list (overrides filterCweTop25 and additionalCweIds)
@@ -333,7 +333,7 @@ platform:
     # Deprecated - use cweIds instead
     # filterCweTop25: true
     # additionalCweIds: "611,918,1234"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -341,31 +341,31 @@ platform:
 
 **Custom CWE list (recommended)**:
 
-```yaml
+<CommandBlock>
 platform:
   sonar:
     cweIds: "79,89,502,918"
     excludeMaintainabilityFindings: true
     excludeReliabilityFindings: true
-```
+</CommandBlock>
 
 **Security + Reliability (no code smells)**:
 
-```yaml
+<CommandBlock>
 platform:
   sonar:
     excludeMaintainabilityFindings: true
-```
+</CommandBlock>
 
 **Legacy: SANS Top 25 only** _(deprecated)_:
 
-```yaml
+<CommandBlock>
 platform:
   sonar:
     filterCweTop25: true
     excludeMaintainabilityFindings: true
     excludeReliabilityFindings: true
-```
+</CommandBlock>
 
 ## Veracode Integration
 
@@ -398,7 +398,7 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   veracode:
     apiKeyId: "your-veracode-key-id"
@@ -408,7 +408,7 @@ platform:
     secretKeys:
       # -- The secret key containing the apiKeySecret
       apiKeySecretKey: "apiKeySecret"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -448,13 +448,13 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   checkmarx:
     region: "US" # Available regions: US, US2, EU, EU2, DEU, ANZ, IND, SNG, MEA
     tenantAccountName: "your-checkmarx-tenant-account-name"
     apiKey: "your-checkmarx-api-key"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -534,7 +534,7 @@ Enter the following information in the configuration fields:
 
 For Helm deployments, add the following to your `values.yaml`:
 
-```yaml
+<CommandBlock>
 platform:
   scm:
     gitlab:
@@ -549,7 +549,7 @@ platform:
         tokenKey: "token"
         # -- The secret key containing the webhookSecret
         webhookSecretKey: "webhookSecret"
-```
+</CommandBlock>
 
 {{/if}}
 
@@ -580,7 +580,7 @@ Pixee Enterprise Server processes SAST results from two types of GitLab **Pipeli
 
 GitLab provides built-in SAST analyzers including both Semgrep and GitLab Advanced SAST. To enable comprehensive SAST scanning that works with both branch and merge request pipelines, add the following to your `.gitlab-ci.yml`:
 
-```yaml
+<CommandBlock>
 workflow:
   # Run pipeline jobs on the pushes to the default branch and merge requests
   rules:
@@ -603,7 +603,7 @@ gitlab-advanced-sast:
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-```
+</CommandBlock>
 
 This configuration:
 
@@ -666,23 +666,23 @@ This configures the `PIXEE_PLATFORM_INTEGRATIONS_DATADOG_API_KEY` and `PIXEE_PLA
 
 If you prefer to configure the integration via Helm values instead of the admin console, set the following in your values file:
 
-```yaml
+<CommandBlock>
 platform:
   datadog:
     apiKey: "<your-api-key>"
     applicationKey: "<your-application-key>"
-```
+</CommandBlock>
 
 Or reference an existing Kubernetes secret:
 
-```yaml
+<CommandBlock>
 platform:
   datadog:
     existingSecret: "my-datadog-secret"
     secretKeys:
       apiKeyKey: "apiKey"
       applicationKeyKey: "applicationKey"
-```
+</CommandBlock>
 
 ## Method 2: SARIF Upload via Datadog Static Analyzer CLI
 
@@ -705,11 +705,11 @@ The Datadog CLI applies many rule sets when scanning a codebase, many of which a
 
 Here's an example of a YAML configuration file that only applies Java security rules:
 
-```yaml
+<CommandBlock>
 schema-version: v1
 rulesets:
   - java-security
-```
+</CommandBlock>
 
 Datadog's rulesets follow a consistent naming convention, so this pattern can be applied to projects that use other programming languages. For example, you can use `python-security` for a Python project. You can even specify multiple of these rulesets if the codebase that is being scanned contains multiple programming languages.
 
@@ -719,21 +719,21 @@ See Datadog's [SAST Rules](https://docs.datadoghq.com/security/code_security/sta
 
 Now that the CLI is installed and configured, it can be run in the desired codebase directory to generate a scan. To do this, invoke the following CLI command within the codebase's root directory:
 
-```
+<CommandBlock>
 datadog-static-analyzer -i . -o ./report-sarif.json -f sarif
-```
+</CommandBlock>
 
 The `-o` flag specifies the output scan file name and location. The `-f` flag specifies the output format. Pixee requires the SARIF output format. See the [README](https://github.com/DataDog/datadog-static-analyzer?tab=readme-ov-file#options){:target="\_blank"} for the CLI for a full list of options.
 
 This output scan file can then be uploaded to Pixee via the API. To do this, you will need to retrieve the base URL and repository ID for the codebase you want to analyze. These can be extracted from the URL when opening the repository in Pixee Resolution Center. You can then send an HTTP POST request to the `/scans` endpoint for that repository using any HTTP client. Here's an example using cURL:
 
-```
+<CommandBlock>
 curl -X POST "$BASE_URL/api/v1/repositories/$REPO_ID/scans" \
   -H "Accept: application/json" \
   -H "Authorization: Bearer $PIXEE_API_KEY" \
   -F 'file=@./report-sarif.json' \
   -F 'metadata={"tool":"datadog_sast","branch":"main"};type=application/json'
-```
+</CommandBlock>
 
 This will cause Pixee to ingest all of the findings within this scan and automatically start to analyze them. You should be able to view progress on the analysis in the same repository page in Pixee Resolution Center.
 
@@ -757,7 +757,7 @@ The workflow uses three GitHub Actions secrets that you must configure in your r
 - `PIXEE_BASE_URL` — the base URL of your Pixee instance (e.g., `https://app.pixee.example.com`)
 - `PIXEE_REPO_ID` — the repository ID from the Pixee Resolution Center URL
 
-```yaml
+<CommandBlock>
 name: Datadog SAST scan and upload to Pixee
 
 on:
@@ -806,6 +806,6 @@ jobs:
             -H "Authorization: Bearer $PIXEE_API_KEY" \
             -F 'file=@./results.sarif' \
             -F 'metadata={"tool":"datadog_sast","branch":"${{ github.ref_name }}","workflow_execution_policy":"execute"};type=application/json'
-```
+</CommandBlock>
 
 This workflow does not require Datadog API or App keys — it only uses the open-source static analyzer CLI and uploads results directly to Pixee.
