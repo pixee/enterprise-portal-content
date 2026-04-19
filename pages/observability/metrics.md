@@ -6,7 +6,7 @@ title: Metrics & Dashboards
 
 Pixee Enterprise Server includes Victoria Metrics for local metrics collection and visualization. Custom dashboards are automatically deployed to help monitor AI service performance and per-finding task metrics.
 
-## Enabling Local Metrics
+<h2 id="enabling-local-metrics">Enabling Local Metrics</h2>
 
 Before accessing Metrics dashboards, you must enable local metrics collection in your deployment.
 
@@ -30,12 +30,12 @@ To enable local metrics collection in Embedded Cluster deployments:
 
 To enable local metrics collection in Helm Deployment, add the following to your `values.yaml`:
 
-<CommandBlock language="yaml">
+<CodeBlock language="yaml">
 global:
   pixee:
     localMetrics:
       enabled: true
-</CommandBlock>
+</CodeBlock>
 
 Then upgrade your deployment:
 
@@ -47,7 +47,7 @@ helm upgrade pixee-enterprise-server ./charts/pixee-enterprise-server \
 
 {{/if}}
 
-## Accessing Metrics Dashboards
+<h2 id="accessing-metrics-dashboards">Accessing Metrics Dashboards</h2>
 
 After enabling local metrics, you can access the Metrics dashboards to view real-time metrics and custom dashboards. You can either enable web access via ingress or use port forwarding.
 
@@ -233,7 +233,7 @@ If users report that analysis is taking longer than expected:
    - If rate limiting is occurring, adjust request rates or increase service quotas
    - If all models show elevated latency during specific time periods, investigate external factors (network issues, AI service outages, etc.)
 
-## Dashboard Updates
+<h2 id="dashboard-updates">Dashboard Updates</h2>
 
 <Note title="Restarting Metrics After Updates">
 When new dashboards are added or existing dashboards are updated during an upgrade, the Metrics pod must be restarted to load the changes.
