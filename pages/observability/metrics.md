@@ -402,7 +402,7 @@ If dashboards show no data:
 
 ## Additional Resources
 
-- [VictoriaMetrics Documentation](https://docs.victoriametrics.com/)
-- [MetricsQL Query Language](https://docs.victoriametrics.com/metricsql/) - VictoriaMetrics query language (PromQL-compatible with extensions)
-- [VMUI Documentation](https://docs.victoriametrics.com/victoriametrics/vmui/) - VictoriaMetrics web UI guide
-- [PromQL Query Examples](https://prometheus.io/docs/prometheus/latest/querying/examples/)
+- <a href="https://docs.victoriametrics.com/" target="_blank" rel="noopener noreferrer">VictoriaMetrics Documentation</a>
+- <a href="https://docs.victoriametrics.com/metricsql/" target="_blank" rel="noopener noreferrer">MetricsQL Query Language</a> - VictoriaMetrics query language (PromQL-compatible with extensions)
+- <a href="https://docs.victoriametrics.com/victoriametrics/vmui/" target="_blank" rel="noopener noreferrer">VMUI Documentation</a> - VictoriaMetrics web UI guide
+- <a href="https://prometheus.io/docs/prometheus/latest/querying/examples/" target="_blank" rel="noopener noreferrer">PromQL Query Examples</a>
