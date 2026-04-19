@@ -123,7 +123,7 @@ Replace the following placeholders in both webhooks:
 - `<your-pixee-server>`: Your Pixee Enterprise Server hostname
 - `<your-asset-group-id>`: Your AppScan asset group ID
 
-For detailed instructions on configuring AppScan webhooks, refer to the [AppScan Webhook API Documentation](https://cloud.appscan.com/swagger/index.html#/Webhooks/Webhooks_Create){:target="\_blank"}.
+For detailed instructions on configuring AppScan webhooks, refer to the [AppScan Webhook API Documentation](https://cloud.appscan.com/swagger/index.html#/Webhooks/Webhooks_Create).
 
 ## Arnica Integration
 
@@ -226,7 +226,7 @@ Pixee Enterprise Server can integrate with both SonarQube Cloud and SonarQube Se
 SonarQube integration requires:
 
 - A SonarQube personal access token with access to retrieve issues and hotspots for the projects that will be integrated with Pixee Enterprise Server
-- A [webhook](https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/webhooks/){:target="\_blank"} secret for receiving scan notifications. When creating the webhook, set the URL to `https://<domain>/api/v1/integrations/sonar-default/webhooks`.
+- A [webhook](https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/webhooks/) secret for receiving scan notifications. When creating the webhook, set the URL to `https://<domain>/api/v1/integrations/sonar-default/webhooks`.
 
 ### Configuration
 
@@ -507,7 +507,7 @@ GitLab SAST integration requires:
 - GitLab pipelines configured with SAST scanning (using GitLab's built-in SAST analyzer)
 
 <Tip>
-It is recommended to use a [GitLab service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to generate the personal access token rather than a personal user account. Service accounts are not tied to individual users, which avoids disruption if a team member leaves or their account is modified. The service account should be granted access to the groups or projects that Pixee will manage.
+It is recommended to use a [GitLab service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html) to generate the personal access token rather than a personal user account. Service accounts are not tied to individual users, which avoids disruption if a team member leaves or their account is modified. The service account should be granted access to the groups or projects that Pixee will manage.
 </Tip>
 
 ### Configuration
@@ -630,9 +630,9 @@ Both regular branch pipelines and merge request pipelines are supported, with me
 
 As an alternative to the webhook-based configuration described above, you can use the Pixee GitLab component for a simplified integration that does not require webhook setup.
 
-The Pixee GitLab component is available at [https://gitlab.com/pixee/pixee](https://gitlab.com/pixee/pixee){:target="\_blank"} and provides a pre-configured CI/CD component that handles delivering SAST findings to Pixee Enterprise Server directly from your pipeline, eliminating the need for webhook configuration.
+The Pixee GitLab component is available at [https://gitlab.com/pixee/pixee](https://gitlab.com/pixee/pixee) and provides a pre-configured CI/CD component that handles delivering SAST findings to Pixee Enterprise Server directly from your pipeline, eliminating the need for webhook configuration.
 
-For detailed configuration options, usage instructions, and requirements, refer to the component documentation at [https://gitlab.com/pixee/pixee](https://gitlab.com/pixee/pixee){:target="\_blank"}.
+For detailed configuration options, usage instructions, and requirements, refer to the component documentation at [https://gitlab.com/pixee/pixee](https://gitlab.com/pixee/pixee).
 
 **Note**: When using the Pixee GitLab component, you do not need to configure GitLab webhooks as described in the "Webhook Configuration" section above.
 
@@ -686,7 +686,7 @@ platform:
 
 ## Method 2: SARIF Upload via Datadog Static Analyzer CLI
 
-This method uses the open-source [Datadog Static Analyzer CLI](https://github.com/DataDog/datadog-static-analyzer){:target="\_blank"} to scan your codebase and upload the resulting SARIF file to Pixee via the API. It does not require a Datadog account or API keys.
+This method uses the open-source [Datadog Static Analyzer CLI](https://github.com/DataDog/datadog-static-analyzer) to scan your codebase and upload the resulting SARIF file to Pixee via the API. It does not require a Datadog account or API keys.
 
 ### Requirements
 
@@ -695,7 +695,7 @@ This method uses the open-source [Datadog Static Analyzer CLI](https://github.co
 
 ### Installing the CLI
 
-Compiled binaries of the Datadog Static Analyzer CLI can be found and downloaded from the [releases](https://github.com/DataDog/datadog-static-analyzer/releases){:target="\_blank"} page of its main Github repository. Find the release that matches the OS and architecture for the machine it will be running on.
+Compiled binaries of the Datadog Static Analyzer CLI can be found and downloaded from the [releases](https://github.com/DataDog/datadog-static-analyzer/releases) page of its main Github repository. Find the release that matches the OS and architecture for the machine it will be running on.
 
 ### CLI Configuration
 
@@ -713,7 +713,7 @@ rulesets:
 
 Datadog's rulesets follow a consistent naming convention, so this pattern can be applied to projects that use other programming languages. For example, you can use `python-security` for a Python project. You can even specify multiple of these rulesets if the codebase that is being scanned contains multiple programming languages.
 
-See Datadog's [SAST Rules](https://docs.datadoghq.com/security/code_security/static_analysis/static_analysis_rules/){:target="\_blank"} documentation for available rulesets.
+See Datadog's [SAST Rules](https://docs.datadoghq.com/security/code_security/static_analysis/static_analysis_rules/) documentation for available rulesets.
 
 ### Manually running and uploading a scan to Pixee
 
@@ -723,7 +723,7 @@ Now that the CLI is installed and configured, it can be run in the desired codeb
 datadog-static-analyzer -i . -o ./report-sarif.json -f sarif
 </CommandBlock>
 
-The `-o` flag specifies the output scan file name and location. The `-f` flag specifies the output format. Pixee requires the SARIF output format. See the [README](https://github.com/DataDog/datadog-static-analyzer?tab=readme-ov-file#options){:target="\_blank"} for the CLI for a full list of options.
+The `-o` flag specifies the output scan file name and location. The `-f` flag specifies the output format. Pixee requires the SARIF output format. See the [README](https://github.com/DataDog/datadog-static-analyzer?tab=readme-ov-file#options) for the CLI for a full list of options.
 
 This output scan file can then be uploaded to Pixee via the API. To do this, you will need to retrieve the base URL and repository ID for the codebase you want to analyze. These can be extracted from the URL when opening the repository in Pixee Resolution Center. You can then send an HTTP POST request to the `/scans` endpoint for that repository using any HTTP client. Here's an example using cURL:
 

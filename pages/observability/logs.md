@@ -160,9 +160,9 @@ _stream:{namespace="kotsadm"} AND "analysis"
 
 ### VictoriaLogs Resources
 
-- [VictoriaLogs Documentation](https://docs.victoriametrics.com/victorialogs/){:target="\_blank"}
-- [LogsQL Query Language](https://docs.victoriametrics.com/victorialogs/logsql/){:target="\_blank"} - Complete LogsQL reference
-- [VictoriaLogs VMUI](https://docs.victoriametrics.com/victorialogs/querying/#vmui){:target="\_blank"} - Web UI guide for logs
+- [VictoriaLogs Documentation](https://docs.victoriametrics.com/victorialogs/)
+- [LogsQL Query Language](https://docs.victoriametrics.com/victorialogs/logsql/) - Complete LogsQL reference
+- [VictoriaLogs VMUI](https://docs.victoriametrics.com/victorialogs/querying/#vmui) - Web UI guide for logs
 
 ## Viewing Pods
 
@@ -343,4 +343,4 @@ kubectl logs <pod-name> -n <namespace> --previous
 
 ## Additional Resources
 
-For more information on the `kubectl logs` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs){:target="\_blank"}.
+For more information on the `kubectl logs` command, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#logs).

@@ -12,7 +12,7 @@ Support for OIDC compatible identity providers is in active development, contact
 
 ## Embedded Identity Provider (Authentik)
 
-Pixee Enterprise Server includes [Authentik](https://goauthentik.io/){:target="\_blank"} as an embedded identity provider. This provides a full-featured identity management solution without requiring an external OIDC provider.
+Pixee Enterprise Server includes [Authentik](https://goauthentik.io/) as an embedded identity provider. This provides a full-featured identity management solution without requiring an external OIDC provider.
 
 ### Features
 
@@ -164,7 +164,7 @@ Users are managed through the Authentik admin interface at `https://<your-domain
 3. After creating the user, select them and click **Create Recovery Link** to generate a one-time password setup link — you can choose how long the link stays valid
 4. Send the recovery link to the user; they will be prompted to set their password on first visit
 
-For more details, see the Authentik documentation on [creating users](https://docs.goauthentik.io/users-sources/user/user_basic_operations/#create-a-user){:target="\_blank"} and [creating recovery links](https://docs.goauthentik.io/users-sources/user/user_basic_operations/#1-create-a-recovery-link){:target="\_blank"}.
+For more details, see the Authentik documentation on [creating users](https://docs.goauthentik.io/users-sources/user/user_basic_operations/#create-a-user) and [creating recovery links](https://docs.goauthentik.io/users-sources/user/user_basic_operations/#1-create-a-recovery-link).
 
 #### Editing and Deleting Users
 
@@ -194,7 +194,7 @@ Pixee Enterprise Server supports Google as an identity provider using OAuth 2.0 
 
 ##### Step 1: Create OAuth Credentials in Google Cloud Console
 
-1. Go to [Google Cloud Console](https://console.cloud.google.com/){:target="\_blank"} and select or create a project
+1. Go to [Google Cloud Console](https://console.cloud.google.com/) and select or create a project
 2. Go to **APIs & Services** → **Credentials** → **Create Credentials** → **OAuth client ID**
 3. If prompted, configure the **OAuth consent screen** first:
    - **User Type**: Internal (for Google Workspace) or External (for any Google account)
@@ -266,7 +266,7 @@ By default, new SAML apps in Google Workspace are **OFF for everyone**. You must
 
 ##### Step 2: Create a SAML Source in Authentik
 
-Follow the Authentik documentation for [Google Workspace SAML integration](https://docs.goauthentik.io/users-sources/sources/social-logins/google/workspace/){:target="\_blank"} to create a SAML source using the SSO URL and Certificate from Step 1.
+Follow the Authentik documentation for [Google Workspace SAML integration](https://docs.goauthentik.io/users-sources/sources/social-logins/google/workspace/) to create a SAML source using the SSO URL and Certificate from Step 1.
 
 1. In the Authentik admin interface, go to **Directory** → **Federation and Social login** → **Create** → **SAML Source**
 2. Set the **Name** (e.g., `Google Workspace`) and **Slug** (e.g., `google`)
@@ -310,7 +310,7 @@ Do **not** register Authentik as a Social Identity Provider in Oracle. Oracle sh
 
 ##### Step 2: Configure Authentik Federation
 
-Follow the Authentik documentation for [creating an OAuth Source](https://docs.goauthentik.io/users-sources/sources/protocols/oauth/){:target="\_blank"} using the **OpenID Connect** type.
+Follow the Authentik documentation for [creating an OAuth Source](https://docs.goauthentik.io/users-sources/sources/protocols/oauth/) using the **OpenID Connect** type.
 
 When configuring the source, use the Client ID and Client Secret from Step 1. Your Oracle OIDC endpoint URLs follow this pattern (replace `<your-idcs-instance>` with your domain identifier):
 
@@ -497,7 +497,7 @@ Pixee Enterprise Server supports Google authentication using OAuth 2.0.
 
 ### Configuration
 
-You must set up a new OAuth client and retrieve the client ID and client secret. See the [Google Cloud Console](https://console.cloud.google.com/){:target="\_blank"} documentation for more information on creating a new OAuth 2.0 Client ID.
+You must set up a new OAuth client and retrieve the client ID and client secret. See the [Google Cloud Console](https://console.cloud.google.com/) documentation for more information on creating a new OAuth 2.0 Client ID.
 
 {{#if entitlements.isEmbeddedClusterDownloadEnabled}}
 
@@ -538,7 +538,7 @@ Pixee Enterprise Server supports Microsoft Entra authentication with single tena
 
 ### Create an App Registration
 
-In order to set up OIDC for Microsoft you need to go to your [Microsoft Azure Portal](https://portal.azure.com/){:target="\_blank"},
+In order to set up OIDC for Microsoft you need to go to your [Microsoft Azure Portal](https://portal.azure.com/),
 and search for `Microsoft Entra ID`. Select `Microsoft Entra ID` under Services.
 
 [![microsoft_entra.png]({{asset "assets/authentication/microsoft_entra-search-for-entra.png"}})]({{asset "assets/authentication/microsoft_entra-search-for-entra.png"}})

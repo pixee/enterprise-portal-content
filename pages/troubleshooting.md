@@ -92,7 +92,7 @@ A Helm CLI installation support bundle will generate an archive you can share wi
 
 ### How do I troubleshoot Authentik blueprint errors?
 
-Pixee Enterprise Server uses [Authentik blueprints](https://docs.goauthentik.io/developer-docs/blueprints/){:target="\_blank"} to declaratively configure the OIDC provider, application, and brand settings. Blueprints are automatically discovered and applied by the Authentik worker pod on a periodic cycle (~60 seconds). If a blueprint fails to apply, it enters an `error` state and will not be retried until the issue is resolved.
+Pixee Enterprise Server uses [Authentik blueprints](https://docs.goauthentik.io/developer-docs/blueprints/) to declaratively configure the OIDC provider, application, and brand settings. Blueprints are automatically discovered and applied by the Authentik worker pod on a periodic cycle (~60 seconds). If a blueprint fails to apply, it enters an `error` state and will not be retried until the issue is resolved.
 
 #### Checking Blueprint Status
 
@@ -147,7 +147,7 @@ This will output the full error details, such as serializer validation errors or
    kubectl exec -n <namespace> <worker-pod> -- ak apply_blueprint mounted/cm-pixee-authentik-blueprint/pixee-oidc.yaml
    </CommandBlock>
 
-For more details on blueprint troubleshooting, see the [Authentik blueprint documentation](https://docs.goauthentik.io/developer-docs/blueprints/){:target="\_blank"}.
+For more details on blueprint troubleshooting, see the [Authentik blueprint documentation](https://docs.goauthentik.io/developer-docs/blueprints/).
 
 ### What internet access is necessary for Pixee Enterprise Server?
 

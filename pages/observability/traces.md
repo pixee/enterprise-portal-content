@@ -144,5 +144,5 @@ VictoriaTraces provides a Jaeger-compatible query API for searching traces. In t
 
 ## VictoriaTraces Resources
 
-- [VictoriaTraces Documentation](https://docs.victoriametrics.com/victoriatraces/){:target="\_blank"}
-- [VictoriaTraces Querying](https://docs.victoriametrics.com/victoriatraces/querying/){:target="\_blank"} - Query API reference
+- [VictoriaTraces Documentation](https://docs.victoriametrics.com/victoriatraces/)
+- [VictoriaTraces Querying](https://docs.victoriametrics.com/victoriatraces/querying/) - Query API reference

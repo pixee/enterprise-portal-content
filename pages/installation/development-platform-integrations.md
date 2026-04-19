@@ -70,7 +70,7 @@ platform:
 
 BitBucket Cloud integration allows Pixee Enterprise Server to work with your BitBucket repositories and requires account credentials with specific permissions.
 
-For security, it is recommended to create and use an API token for BitBucket Cloud integration rather than using personal credentials. See the [BitBucket API Token documentation](https://support.atlassian.com/bitbucket-cloud/docs/create-a-repository-access-token/){:target="\_blank"} for information on creating an API token.
+For security, it is recommended to create and use an API token for BitBucket Cloud integration rather than using personal credentials. See the [BitBucket API Token documentation](https://support.atlassian.com/bitbucket-cloud/docs/create-a-repository-access-token/) for information on creating an API token.
 
 <Note>
 BitBucket API tokens require your account's **email address** for API authentication, while Git operations use your **username**. Make sure to configure both values.
@@ -136,7 +136,7 @@ GitHub integration allows Pixee Enterprise Server to work with GitHub.com or sel
 
 Pixee Enterprise Server is able to integrate with GitHub.com and self-hosted GitHub Enterprise Servers. If you are self-hosting a GitHub enterprise server or otherwise have configured GitHub enterprise server on a domain other than github.com, see the [Configuration](#configuration) section below for instructions on setting your custom GitHub domain.
 
-GitHub integration comes in the form of a custom GitHub app, which will be needed to configure GitHub integration in Pixee Enterprise Server. A custom GitHub app configures webhook events, event destination, and permissions for enhanced GitHub integration. In creating this application, we have followed the best [practices provided by GitHub](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/best-practices-for-creating-a-github-app){:target="\_blank"}.
+GitHub integration comes in the form of a custom GitHub app, which will be needed to configure GitHub integration in Pixee Enterprise Server. A custom GitHub app configures webhook events, event destination, and permissions for enhanced GitHub integration. In creating this application, we have followed the best [practices provided by GitHub](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/best-practices-for-creating-a-github-app).
 
 <Note>
 Network communication between your GitHub (.com or Enterprise Server) and Pixee Enterprise Server must exist. This can vary based on the deployment configuration of GitHub Enterprise Server and Pixee Enterprise Server.
@@ -146,7 +146,7 @@ Network communication between your GitHub (.com or Enterprise Server) and Pixee 
 
 Unless otherwise instructed, leave the existing default values provided by GitHub.
 
-1. Go to [https://github.com/settings/apps](https://github.com/settings/apps){:target="\_blank"}, replace `github.com` with your own private GitHub host as needed.
+1. Go to [https://github.com/settings/apps](https://github.com/settings/apps), replace `github.com` with your own private GitHub host as needed.
 1. Click `New GitHub App` button.
 1. Set the `GitHub App name` to something unique (i.e. "AcmePixeebotApp"), save this value for later.
 1. Set `Homepage URL` to anything (i.e. "https://pixee.ai"), this can be updated later.
@@ -259,7 +259,7 @@ Be sure to check the indentation is correct for each line of the GitHub app priv
 ### Verification
 
 If you enabled GitHub integration and created a custom GitHub app, you can verify your GitHub App connectivity by checking your GitHub App's event log.
-This log can be accessed through your GitHub App's settings under the "Advanced" section. See [GitHub.com](https://docs.github.com/en/webhooks/testing-and-troubleshooting-webhooks/viewing-webhook-deliveries#viewing-deliveries-for-github-app-webhooks){:target="\_blank"} for more information.
+This log can be accessed through your GitHub App's settings under the "Advanced" section. See [GitHub.com](https://docs.github.com/en/webhooks/testing-and-troubleshooting-webhooks/viewing-webhook-deliveries#viewing-deliveries-for-github-app-webhooks) for more information.
 
 ## GitLab Integration
 
@@ -282,7 +282,7 @@ GitLab integration requires:
 - (Optional) Webhook secret for GitLab webhook integration
 
 <Tip>
-It is recommended to use a [GitLab service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html){:target="_blank"} to generate the personal access token rather than a personal user account. Service accounts are not tied to individual users, which avoids disruption if a team member leaves or their account is modified. The service account should be granted access to the groups or projects that Pixee will manage.
+It is recommended to use a [GitLab service account](https://docs.gitlab.com/ee/user/profile/service_accounts.html) to generate the personal access token rather than a personal user account. Service accounts are not tied to individual users, which avoids disruption if a team member leaves or their account is modified. The service account should be granted access to the groups or projects that Pixee will manage.
 </Tip>
 
 ### Configuration
@@ -335,6 +335,6 @@ If you want to use webhooks to notify Pixee of build events, you'll need to conf
 
 The webhook URI should be: `https://<example-pixee-server.com>/api/v1/integrations/gitlab-default/webhooks`
 
-For detailed instructions on configuring GitLab webhooks, see the [GitLab Webhook Documentation](https://docs.gitlab.com/user/project/integrations/webhooks/){:target="\_blank"}.
+For detailed instructions on configuring GitLab webhooks, see the [GitLab Webhook Documentation](https://docs.gitlab.com/user/project/integrations/webhooks/).
 
 The webhook secret configured in Pixee Enterprise Server should match the secret token configured in your GitLab webhook settings.

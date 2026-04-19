@@ -87,4 +87,4 @@ kubectl get all -n pixee-enterprise-server
 
 If you enabled GitHub integration and created a custom GitHub app, you can verify your GitHub App connectivity by checking your GitHub App's event log.
 
-This log can be accessed through your GitHub App's settings under the "Advanced" section. See [GitHub.com](https://docs.github.com/en/webhooks/testing-and-troubleshooting-webhooks/viewing-webhook-deliveries#viewing-deliveries-for-github-app-webhooks){:target="\_blank"} for more information.
+This log can be accessed through your GitHub App's settings under the "Advanced" section. See [GitHub.com](https://docs.github.com/en/webhooks/testing-and-troubleshooting-webhooks/viewing-webhook-deliveries#viewing-deliveries-for-github-app-webhooks) for more information.

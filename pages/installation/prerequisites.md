@@ -72,13 +72,13 @@ Select or create a Kubernetes cluster with the following available to Pixee Ente
 
 **DNS Configuration**: Create the appropriate DNS records so that a domain name resolves to your Kubernetes cluster.
 
-**TLS Certificate**: To encrypt traffic to Pixee Enterprise Server, you'll need to generate/acquire a TLS certificate for use with your selected domain name. With Helm, you have multiple options for TLS certificate management: using [cert-manager](https://cert-manager.io/docs/installation/){:target="\_blank"} to automatically provision TLS certificates, using pre-existing TLS certificates as Kubernetes secrets, or terminating TLS outside the cluster (i.e., via a load balancer).
+**TLS Certificate**: To encrypt traffic to Pixee Enterprise Server, you'll need to generate/acquire a TLS certificate for use with your selected domain name. With Helm, you have multiple options for TLS certificate management: using [cert-manager](https://cert-manager.io/docs/installation/) to automatically provision TLS certificates, using pre-existing TLS certificates as Kubernetes secrets, or terminating TLS outside the cluster (i.e., via a load balancer).
 
 **Additional Helm Requirements**:
 
 - Kubectl installed and configured to access the target cluster
 - Helm CLI installed (version >3.15)
-- `preflight` and `support-bundle` plugins from [troubleshoot.sh](https://troubleshoot.sh/docs/#installation){:target="\_blank"} installed in the target cluster
+- `preflight` and `support-bundle` plugins from [troubleshoot.sh](https://troubleshoot.sh/docs/#installation) installed in the target cluster
 - Access to image registry (images.pixee.ai) from Kubernetes cluster
 
 <Tip>

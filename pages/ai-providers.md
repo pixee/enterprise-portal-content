@@ -87,7 +87,7 @@ AI Provider integration requires:
 - An AI provider endpoint, or default to the provider's public API endpoint
 - Model names for the reasoning and fast models from your chosen AI provider
 
-For OpenAI, see OpenAI's page on creating an [API Key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key){:target="\_blank"} for more information.
+For OpenAI, see OpenAI's page on creating an [API Key](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key) for more information.
 
 ## OpenAI-compatible APIs
 
@@ -129,7 +129,7 @@ Preflight checks should run after the configuration is saved and should successf
 
 Azure OpenAI integration requires:
 
-- Integration with [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal){:target="\_blank"} requires model deployments of the following recommended models:
+- Integration with [Azure OpenAI](https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?pivots=web-portal) requires model deployments of the following recommended models:
   - o3-mini (version: 2025-01-31) -- as fast model
   - o3-mini (version: 2025-01-31) -- as reasoning model
 
