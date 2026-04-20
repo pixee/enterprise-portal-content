@@ -65,13 +65,11 @@ navigation:
 
   - title: Troubleshooting
     icon: wrench
-    items:
-      - title: General Troubleshooting
-        page: pages/troubleshooting.md
-      - title: Diagnostics
-        items:
-          - title: CodeBlock Repro
-            page: pages/codeblock-repro.md
+    page: pages/troubleshooting.md
+
+  - title: CodeBlock Repro
+    icon: book
+    page: pages/codeblock-repro.md
 
   - title: Helm Values Reference
     icon: book
