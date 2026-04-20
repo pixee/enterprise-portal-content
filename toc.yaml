@@ -67,6 +67,10 @@ navigation:
     icon: wrench
     page: pages/troubleshooting.md
 
+  - title: CodeBlock Repro
+    icon: book
+    page: pages/codeblock-repro.md
+
   - title: Helm Values Reference
     icon: book
     helm_chart:
