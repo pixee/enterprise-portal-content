@@ -4,9 +4,9 @@ title: CodeBlock Repro
 
 # CodeBlock rendering repro
 
-This page demonstrates that `<CodeBlock>` on the Enterprise Portal does not produce the behavior documented at https://docs.replicated.com/vendor/enterprise-portal-configure — neither with raw JSX children nor with the template-literal pattern shown in the official docs example.
+On this portal, `<CodeBlock>` does not preserve indentation in multi-line content and no `language=` syntax highlighting is applied. The docs at https://docs.replicated.com/vendor/enterprise-portal-configure describe `<CodeBlock>` as "Display multi-line code blocks with syntax highlighting" and list a `language` prop, but do not show an example of `<CodeBlock>` with multi-line indented content, so it's unclear what the expected source pattern is.
 
-## Attempt 1 — raw JSX children
+## Attempt — raw children
 
 **Source:**
 
@@ -28,43 +28,24 @@ global:
       enabled: true
 </CodeBlock>
 
-**Expected:** indented YAML with syntax highlighting.
-**Actual:** indentation is collapsed; no highlighting.
+**Observed:**
 
-## Attempt 2 — JSX template literal (docs pattern)
+- YAML indentation (2-space nesting) is lost; output is flat.
+- No syntax-highlighting tokens in the rendered `<pre><code>`.
+- The `language="yaml"` prop has no visible effect.
 
-The docs CommandBlock example uses `{` `` ` `` `...` `` ` `` `}` to preserve whitespace. Applying the same pattern to CodeBlock:
+## Reference — CommandBlock preserves indentation
 
-**Source:**
+Identical content inside `<CommandBlock>` keeps its indentation (the rendered React Server Component payload shows children serialized to a base64 `encoded` prop). `<CommandBlock>` does not highlight, and its `language=` prop is also not visible in rendered output, but indentation works.
 
 <CommandBlock>
-<CodeBlock language="yaml">
-  {`global:
-  pixee:
-    localMetrics:
-      enabled: true`}
-</CodeBlock>
-</CommandBlock>
-
-**Rendered:**
-
-<CodeBlock language="yaml">
-  {`global:
-  pixee:
-    localMetrics:
-      enabled: true`}
-</CodeBlock>
-
-**Expected:** the `{` `` ` `` `...` `` ` `` `}` JSX expression is evaluated; newlines and indentation are preserved; syntax highlighting is applied.
-**Actual:** the `{` and `}` render as literal characters, and newlines collapse to single spaces. The portal's MDX compiler appears not to evaluate JSX expressions in component children.
-
-## Reference — CommandBlock works
-
-Identical content inside `<CommandBlock>` preserves indentation (via a base64 `encoded` prop observed in the rendered React Server Component payload), though `language=` has no visible effect:
-
-<CommandBlock language="yaml">
 global:
   pixee:
     localMetrics:
       enabled: true
 </CommandBlock>
+
+## Asks
+
+1. What is the canonical source pattern for passing multi-line content to `<CodeBlock>` so that indentation is preserved?
+2. Is `language=` highlighting wired up on this portal version, and if so, what values are accepted?
