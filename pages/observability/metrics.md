@@ -6,6 +6,17 @@ title: Metrics & Dashboards
 
 Pixee Enterprise Server includes Victoria Metrics for local metrics collection and visualization. Custom dashboards are automatically deployed to help monitor AI service performance and per-finding task metrics.
 
+**On this page:**
+
+- [Enabling Local Metrics](#enabling-local-metrics)
+- [Accessing Metrics Dashboards](#accessing-metrics-dashboards)
+- [Available Dashboards](#available-dashboards)
+- [Dashboard Updates](#dashboard-updates)
+- [Victoria Metrics VMUI](#victoria-metrics-vmui)
+- [Metrics Retention](#metrics-retention)
+- [Troubleshooting](#troubleshooting)
+- [Additional Resources](#additional-resources)
+
 <h2 id="enabling-local-metrics">Enabling Local Metrics</h2>
 
 Before accessing Metrics dashboards, you must enable local metrics collection in your deployment.
@@ -174,7 +185,7 @@ http://localhost:8428/vmui/#/dashboards
 
 {{/if}}
 
-## Available Dashboards
+<h2 id="available-dashboards">Available Dashboards</h2>
 
 Pixee Enterprise Server includes the following pre-configured dashboards:
 
@@ -272,7 +283,7 @@ Custom dashboards created through the Metrics UI are stored in browser localStor
 3. Re-import them after the pod restart
    </Warning>
 
-## Victoria Metrics VMUI
+<h2 id="victoria-metrics-vmui">Victoria Metrics VMUI</h2>
 
 Victoria Metrics provides a powerful UI (VMUI) for querying and visualizing metrics beyond the pre-configured dashboards.
 
@@ -312,7 +323,7 @@ histogram_quantile(0.95, sum(rate(ai_service_latency_ms_bucket[5m])) by (le, mod
 sum by(status) (per_finding_tasks)
 </CommandBlock>
 
-## Metrics Retention
+<h2 id="metrics-retention">Metrics Retention</h2>
 
 Metrics are retained for **3 days** by default. This retention period balances observability needs with storage requirements.
 
@@ -358,7 +369,7 @@ The new retention period will be applied automatically during the deployment.
 
 {{/if}}
 
-## Troubleshooting
+<h2 id="troubleshooting">Troubleshooting</h2>
 
 ### Port Forward Fails
 
@@ -400,7 +411,7 @@ If dashboards show no data:
 3. Check that the analysis and platform services are running and processing work
 4. Verify the time range selector in VMUI is set appropriately (default is "Last 30 minutes")
 
-## Additional Resources
+<h2 id="additional-resources">Additional Resources</h2>
 
 - <a href="https://docs.victoriametrics.com/" target="_blank" rel="noopener noreferrer">VictoriaMetrics Documentation</a>
 - <a href="https://docs.victoriametrics.com/metricsql/" target="_blank" rel="noopener noreferrer">MetricsQL Query Language</a> - VictoriaMetrics query language (PromQL-compatible with extensions)
