@@ -30,12 +30,12 @@ To enable local metrics collection in Embedded Cluster deployments:
 
 To enable local metrics collection in Helm Deployment, add the following to your `values.yaml`:
 
-<CodeBlock language="yaml">
-  {`global:
+<CommandBlock>
+global:
   pixee:
     localMetrics:
-      enabled: true`}
-</CodeBlock>
+      enabled: true
+</CommandBlock>
 
 Then upgrade your deployment:
 
